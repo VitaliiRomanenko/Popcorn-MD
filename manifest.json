@@ -1,0 +1,10 @@
+{
+	"id": "popcorn-md",
+	"name": "Popcorn MD",
+	"version": "0.1.0",
+	"minAppVersion": "1.5.0",
+  	"description": "Generate and manage movie-related notes in Obsidian using IMDb identifiers or movie titles.",
+	"author": "4arlz",
+	"authorUrl": "https://github.com/VitaliiRomanenko",
+	"isDesktopOnly": false
+}
