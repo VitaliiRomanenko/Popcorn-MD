@@ -1,15 +1,21 @@
 import { App, PluginSettingTab, Setting, Notice, TFile } from 'obsidian';
 import { FileSuggest } from './suggester/FileSuggest';
+import { LanguageSuggest } from './suggester/LanguageSuggest';
 import PopcornMD from '../main';
+import { LANGUAGES } from './language/languages';
 
 export interface PopcornMDSettings {
 	APIKey: string;
 	templateFile: string;
+	language: string;
+	test: string;
 }
 
 export const DEFAULT_SETTINGS: PopcornMDSettings = {
 	APIKey: '',
 	templateFile: '',
+	language: 'en',
+	test: ''
 };
 
 export class PopcornMDSettingTab extends PluginSettingTab {
@@ -71,13 +77,54 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 			});
   	}
 
+	private createLanguageSetting(containerEl: HTMLElement) {
+		const desc = document.createDocumentFragment();
+		desc.createEl('span', {
+			text: 'Note language (if not available in the database, English will be used).'
+		})
+
+		new Setting(containerEl)
+			.setName('Language preference')
+			.setDesc(desc)
+			.addSearch(cb => {
+				try{
+					new LanguageSuggest(this.app, cb.inputEl)
+				} catch {
+					// ignore
+				}
+				cb.setPlaceholder('For example: Ukrainian, Українська, uk')
+					.setValue(this.getLanguageDisplayName(this.plugin.settings.language))
+					.onChange(async (value) => {
+						const isoFromDataset = (cb.inputEl as HTMLInputElement).dataset['iso'];
+						if (isoFromDataset) {
+							this.plugin.settings.language = isoFromDataset;
+						} else {
+							const found = LANGUAGES.find(l => 
+								((l.name || l.english_name) || '').toLowerCase() === value.toLowerCase() 
+								|| l.iso_639_1.toLowerCase() === value.toLowerCase() 
+							);
+							this.plugin.settings.language = found ? found.iso_639_1 : 'en';
+						}
+						await this.plugin.saveSettings();
+						delete (cb.inputEl as HTMLInputElement).dataset['iso'];
+					});
+				cb.inputEl.style.width = '100%';
+			})
+	}
+
+	private getLanguageDisplayName(iso: string): string {
+		const found = LANGUAGES.find(l => l.iso_639_1 === iso);
+		return found ? (found.name || found.english_name) : 'English'
+	}
+
 	display(): void {
 		const { containerEl } = this;
 
 		containerEl.empty();
+		console.log(LANGUAGES.length);
 		this.createTemplateFileSetting(containerEl);
 		this.createAPIKeySetting(containerEl);
-		// 
+		this.createLanguageSetting(containerEl);
 		
 	}
 }

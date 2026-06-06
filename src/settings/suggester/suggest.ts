@@ -94,12 +94,6 @@ class Suggest<T> {
     }
 }
 
-
-
-
-
-
-
 export abstract class TextInputSuggest<T> implements ISuggestOwner<T> {
     private popper!: PopperInstance;
     private scope: Scope;
@@ -120,7 +114,10 @@ export abstract class TextInputSuggest<T> implements ISuggestOwner<T> {
         this.inputEl.addEventListener('input', this.onInputChanged.bind(this));
         this.inputEl.addEventListener('focus', this.onInputChanged.bind(this));
         this.inputEl.addEventListener('blur', this.close.bind(this));
-        this.suggestEl.on('mousedown', 'suggestion-container', (event: MouseEvent) => {
+        // this.suggestEl.on('mousedown', 'suggestion-container', (event: MouseEvent) => {
+        //     event.preventDefault();
+        // });
+        this.suggestEl.on('mousedown', '.suggestion-item', (event: MouseEvent) => {
             event.preventDefault();
         });
     }
@@ -174,7 +171,7 @@ export abstract class TextInputSuggest<T> implements ISuggestOwner<T> {
 
     close(): void {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (<any>this.app).keymap.pushScope(this.scope);
+        (<any>this.app).keymap.popScope(this.scope);
 
         this.suggest.setSuggestions([]);
         if (this.popper) this.popper.destroy();
