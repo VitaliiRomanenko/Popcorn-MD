@@ -20,4 +20,9 @@ data.json
 
 # Exclude macOS Finder (System Explorer) View States
 .DS_Store
+
+# Exclude VSCode workspace settings
 Popcorn-MD.code-workspace
+
+# Exclude hotreload filesі
+.hotreload

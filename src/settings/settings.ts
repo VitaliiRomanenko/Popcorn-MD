@@ -1,4 +1,5 @@
-import { App, PluginSettingTab, Setting } from 'obsidian';
+import { App, PluginSettingTab, Setting, Notice, TFile } from 'obsidian';
+import { FileSuggest } from './suggester/FileSuggest';
 import PopcornMD from '../main';
 
 export interface PopcornMDSettings {
@@ -19,48 +20,64 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 		this.plugin = plugin;
 	}
 
-	display(): void {
-		const { containerEl } = this;
+	private createTemplateFileSetting(containerEl: HTMLElement) {
+    	const templateFileDesc = document.createDocumentFragment();
+		templateFileDesc.createDiv({ text: 'Files will be available as templates.' });
+		templateFileDesc.createEl('p', {
+			text: "You can use variables like {{title}} and {{year}} in the template.",
+		});
 
-		containerEl.empty();
+		new Setting(containerEl)
+		.setName('Template file')
+		.setDesc(templateFileDesc)
+		.addSearch(cb => {
+			try {
+			new FileSuggest(this.app, cb.inputEl);
+			} catch {
+			// eslint-disable
+			}
+			cb.setPlaceholder('Example: templates/template-file')
+			.setValue(this.plugin.settings.templateFile)
+			.onChange(newTemplateFile => {
+				this.plugin.settings.templateFile = newTemplateFile;
+				this.plugin.saveSettings();
+			});
+			cb.inputEl.style.width = '100%';
+		});
+  	}
 
-		// 
+	private createAPIKeySetting(containerEl: HTMLElement) {
+    	const APIKeyDesc = document.createDocumentFragment();
+
+		APIKeyDesc.createEl('span');
+		APIKeyDesc.appendText("Your TMDb API Key. ");
+		APIKeyDesc.createEl('a', {
+		text: "You can get one here",
+		  href: 'https://www.themoviedb.org/documentation/api'
+		});
+
 		new Setting(containerEl)
 			.setName('TMDb API Key')
-			.setDesc("Your TMDb API Key. You can get one for free at https://www.themoviedb.org/documentation/api")
-			.addText((text) =>
+			.setDesc(APIKeyDesc)
+			.addText((text) => {
 				text
 					.setPlaceholder('Enter your key')
 					.setValue(this.plugin.settings.APIKey)
 					.onChange(async (value) => {
 						this.plugin.settings.APIKey = value;
 						await this.plugin.saveSettings();
-					}),
-			);
-		
-		new Setting(containerEl)
-			.setName('Template')
-			.setDesc(this.plugin.settings.templateFile == "" 
-							? "The template used to generate the movie note" 
-							: `Current template: ${this.plugin.settings.templateFile}`
-						)
-			.addButton((button) => {
-				button.setButtonText("Chose a template file")
-				.onClick(() => {
-					const input = document.createElement('input');
-					input.type = 'file';
-					input.accept = '.md';
-					input.onchange = async () => {
-						const file = input.files?.[0];
-						if (file) {
-							this.plugin.settings.templateFile = file.name;
-							await this.plugin.saveSettings();
-							this.display();
-						}
-					};
-					input.click();
-				});
+					});
+				text.inputEl.style.width = '100%';
 			});
-			
+  	}
+
+	display(): void {
+		const { containerEl } = this;
+
+		containerEl.empty();
+		this.createTemplateFileSetting(containerEl);
+		this.createAPIKeySetting(containerEl);
+		// 
+		
 	}
 }
