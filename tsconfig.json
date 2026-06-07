@@ -1,6 +1,5 @@
 {
 	"compilerOptions": {
-		"ignoreDeprecations": "6.0",
 		"inlineSourceMap": true,
 		"inlineSources": true,
 		"module": "ESNext",
@@ -9,7 +8,7 @@
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedIndexedAccess": true,
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"isolatedModules": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
@@ -19,5 +18,5 @@
 		"esModuleInterop": true,
 		"types": ["jest", "node"]
 	},
-	"include": ["src/**/*.ts", "src/settings/language/Languages.json", "tests/**/*.test.ts"]
+	"include": ["src/**/*.ts", "src/settings/language/Languages.json"]
 }
