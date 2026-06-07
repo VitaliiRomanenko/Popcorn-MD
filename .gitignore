@@ -26,3 +26,6 @@ Popcorn-MD.code-workspace
 
 # Exclude hotreload filesі
 .hotreload
+
+# Environment variables
+.env
