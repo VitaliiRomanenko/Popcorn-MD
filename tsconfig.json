@@ -16,7 +16,8 @@
 		"allowSyntheticDefaultImports": true,
 		"lib": ["ES2021", "DOM"],
 		"resolveJsonModule": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"types": ["jest", "node"]
 	},
-	"include": ["src/**/*.ts", "src/settings/language/Languages.json"]
+	"include": ["src/**/*.ts", "src/settings/language/Languages.json", "tests/**/*.test.ts"]
 }
