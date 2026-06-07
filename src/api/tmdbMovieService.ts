@@ -19,8 +19,11 @@ export class TMDbMovieService extends TMDbAPIService {
         }
     }
 
-    public async getMovieById(id: number): Promise<Movie>{
+    public async getMovieById(id: number): Promise<Movie | null>{
         const data = await this.fetchFromTMDb(`/movie/${id.toString()}`);
+        if (data.success === false){
+            return null;
+        }
         return data as Movie;
     }
 
