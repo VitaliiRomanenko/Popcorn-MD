@@ -1,11 +1,12 @@
 import { Movie } from "../models/Movie";
+import { SearchResult, SearchMovie } from "../models/SearchResult";
 
 export interface PluginsSettings {
     apiKey: string;
     language: string;
 }
 
-export class TMDbService {
+export class TMDbAPIService {
     private apiKey: string;
     private language: string;
     private readonly BASE_URL = "https://api.themoviedb.org/3";
@@ -15,7 +16,7 @@ export class TMDbService {
         this.language = settings.language;
     }
 
-    private async fetchFromTMDb(endpoint: string, params: Record<string, string> = {}): Promise<any> {
+    protected async fetchFromTMDb(endpoint: string, params: Record<string, string> = {}): Promise<any> {
         const url = new URL (`${this.BASE_URL}${endpoint}`);
         url.searchParams.append("api_key", this.apiKey);
         url.searchParams.append("language", this.language);
@@ -30,5 +31,9 @@ export class TMDbService {
         }
         return response.json();
     }
-    
+
+    public async checkAPIKey(): Promise<boolean>{
+        const resp = await this.fetchFromTMDb('/authentication');
+        return resp.success;
+    }
 }
