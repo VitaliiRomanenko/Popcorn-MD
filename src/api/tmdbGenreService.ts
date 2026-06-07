@@ -12,7 +12,7 @@ export class TMDbGanreService extends TMDbAPIService {
 
     public async init(): Promise<void>{
         const data = await this.fetchFromTMDb(`/genre/movie/list`);
-        data.genres.array.forEach((g: Genre) => {
+        data.genres.forEach((g: Genre) => {
             this.genreMap.set(g.id, g.name);
         });
     }
