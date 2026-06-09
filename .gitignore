@@ -30,3 +30,6 @@ Popcorn-MD.code-workspace
 # Environment variables
 .env
 .aider*
+
+# Agent files
+agent/
