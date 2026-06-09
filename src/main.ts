@@ -6,6 +6,7 @@ import {
 	PopcornMDSettings,
 	PopcornMDSettingTab,
 } from './settings/settings';
+import { SearchModal } from './views/searchModal';
 
 export default class PopcornMD extends Plugin {
 	settings!: PopcornMDSettings;
@@ -13,7 +14,7 @@ export default class PopcornMD extends Plugin {
 	async onload() {
 		await this.loadSettings();
 		this.addRibbonIcon('popcorn', 'Create new movie note', (_evt: MouseEvent) => {
-			throw new Error("Method not implemented.");
+			new SearchModal(this.app, this.settings).open();
 		});
 
 		this.addCommand({

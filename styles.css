@@ -1,0 +1,110 @@
+.searchModal-container h1{
+    margin: 5px;
+}
+
+.searchModal-container input {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.searchModal-container .movie-list {
+    margin-top: 10px;
+    overflow-x: auto;
+}
+
+.card {
+  display: flex;
+  cursor: pointer;
+  font-size: 1rem;
+  flex-direction: row;
+  margin: 5px 0px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.card .movie-photo {
+  flex-shrink: 0;
+  padding: 10px;
+}
+
+.card .movie-photo img{
+  width: 80px;
+  height: 120px;
+}
+.card .movie-info {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 5px;
+}
+
+.card .movie-info h2{
+  margin-top: 2px;
+  margin-bottom: 3px;
+  margin-right: 3px;
+  display: inline-block;
+}
+.card .movie-info span.original-name{
+  font-size: 0.8em;
+  color: #7f7f7f;
+  display: inline-block;
+}
+.card .movie-info p {
+  font-size: 0.7em;
+  margin-top: 3px;
+  text-align: justify;
+  overflow-wrap: break-word;
+}
+
+.card .genres .genre {
+    display: inline-block;
+    border-radius: 3px;
+    padding: .2em .5em .3em;
+    margin: .25em .1em;
+    color: #fff;
+    background-image: linear-gradient(90deg,#ff8901,#db1d5f);
+    font-weight: 700;
+    font-size: 0.6em;
+    text-transform: uppercase;
+}
+.movie-subinfo {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    margin-top: 0.5em;
+}
+
+.movie-subinfo span.realise-year{
+    display: block;
+}
+
+.movie-subinfo .rating {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.movie-subinfo .rating .star {
+  position: relative;
+  font-size: 1em;
+  line-height: 1;
+  display: inline-block;
+}
+
+.movie-subinfo .rating .star.empty {
+  color: transparent;
+  -webkit-text-stroke: 1px gold;
+}
+
+.movie-subinfo .rating .star.full {
+  color: gold;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.movie-subinfo .rating .star.part {
+  color: gold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
