@@ -10,8 +10,8 @@ export interface Movie {
   budget: number;
   genres: Genre[];
   homepage?: string;
-  TMDbID: number;
-  IMDbID: string;
+  id: number;
+  imdb_id: string;
   origin_country: string[];
   original_language: string;
   original_title: string;

@@ -1,17 +1,23 @@
-import { App, Modal, Plugin, RelativeDateValue } from "obsidian";
-import { SearchMovie, SearchResult } from "../models/SearchResult";
+import { App, Modal, TFile } from "obsidian";
+import { SearchResult } from "../models/SearchResult";
 import { createMovieCard } from "./MovieCard"
 import { TMDbGanreService } from "../api/tmdbGenreService";
 import { PopcornMDSettings } from "../settings/settings";
 import { TMDbMovieService } from "../api/tmdbMovieService";
+import { createMovieNote } from "../commands/createMovieNote";
+import PopcornMD from "../main";
 
 export class SearchModal extends Modal {
     private genreService: TMDbGanreService;
     private movieService: TMDbMovieService;
-    constructor(app: App, settings: PopcornMDSettings) {
+    private plugin: PopcornMD;
+    private tamplatePath: string;
+    constructor(app: App, settings: PopcornMDSettings, _plugin: PopcornMD) {
         super(app);
         this.genreService = new TMDbGanreService({ apiKey: settings.APIKey, language: settings.language });
         this.movieService = new TMDbMovieService({ apiKey: settings.APIKey, language: settings.language });
+        this.plugin = _plugin;
+        this.tamplatePath = settings.templateFile;
         this.genreService.init();
     }
 
@@ -32,16 +38,28 @@ export class SearchModal extends Modal {
                 if (query.length === 0) {
                     return;
                 }
-                movieList.empty();
                 let result: SearchResult;
                 movieList.empty();
                 try {
+                    movieList.createEl('span', {text: "Loading..."});
                     result = await this.movieService.searchMovie(query);
+                    movieList.empty();
                     if (result.results.length !== 0) {
                         result.results.forEach(movie => {
-                            movieList.appendChild(
-                                createMovieCard(movie, this.buildGenresMap(movie))
-                            );
+                            const card = createMovieCard(movie, this.buildGenresMap(movie));
+                            card.addEventListener('click', async() => {
+                                const movie = await this.movieService.getMovieById(Number(card.id));
+                                
+                                if(!movie){
+                                    return;
+                                }
+                                const note = await createMovieNote(movie, this.plugin.app.vault, this.tamplatePath);
+                                if (note instanceof TFile) {
+                                    this.app.workspace.openLinkText(note.path, "", true);
+                                }
+                                this.close();
+                            });
+                            movieList.appendChild(card);
                         });
                     } else {
                         movieList.createDiv({ text: "Nothing found(" });

@@ -14,14 +14,14 @@ export default class PopcornMD extends Plugin {
 	async onload() {
 		await this.loadSettings();
 		this.addRibbonIcon('popcorn', 'Create new movie note', (_evt: MouseEvent) => {
-			new SearchModal(this.app, this.settings).open();
+			new SearchModal(this.app, this.settings, this).open();
 		});
 
 		this.addCommand({
 			id: 'open-modal-searh',
 			name: 'Create new movie note',
 			callback: () => {
-				new SearchModal(this.app, this.settings).open();
+				new SearchModal(this.app, this.settings, this).open();
 			},
 		});
 
