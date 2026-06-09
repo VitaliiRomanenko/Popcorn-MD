@@ -18,10 +18,10 @@ export default class PopcornMD extends Plugin {
 		});
 
 		this.addCommand({
-			id: 'open-modal-simple',
-			name: 'Open modal (simple)',
+			id: 'open-modal-searh',
+			name: 'Create new movie note',
 			callback: () => {
-				throw new Error("Method not implemented.");
+				new SearchModal(this.app, this.settings).open();
 			},
 		});
 
