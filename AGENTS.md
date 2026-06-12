@@ -260,6 +260,39 @@ this.registerInterval(
 - Settings not persisting: ensure `loadData`/`saveData` are awaited and you re-render the UI after changes.
 - Mobile-only issues: confirm you're not using desktop-only APIs; check `isDesktopOnly` and adjust.
 
+## Core Rules for Git Commit Messages
+- Use imperative mood  
+Write as if giving a command: “Add feature” not “Added feature” or “Adding feature”.
+- Keep subject line concise  
+Limit to 50 characters max. It should summarize the change clearly.
+- Capitalize subject line  
+Always start with an uppercase letter.
+- Do not end subject with punctuation  
+Avoid periods, commas, or other trailing marks.
+- Separate subject from body  
+Leave one blank line between them.
+- Explain the “why” in the body  
+The body should clarify motivation, context, or consequences — not just repeat the subject.
+- Wrap body at 72 characters  
+Improves readability in terminals and tools.
+- Be specific, not generic  
+Avoid vague subjects like “Update code”. Instead: “Refactor MovieService to support IMDb IDs”.
+Examples of Good Commit Messages
+
+```plane text
+Add GenreService with TMDb integration
+
+Implements a new service to fetch movie genres from TMDb API.
+Supports caching and error handling. Refs #42.
+```
+
+```plate text
+Fix null reference in MovieCard UI
+
+Ensures default poster is loaded when CDN image is missing.
+Prevents runtime crash in Popcorn MD plugin.
+```
+
 ## References
 
 - Obsidian sample plugin: https://github.com/obsidianmd/obsidian-sample-plugin
