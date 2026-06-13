@@ -48,7 +48,7 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 				this.plugin.settings.templateFile = newTemplateFile;
 				this.plugin.saveSettings();
 			});
-			cb.inputEl.style.width = '100%';
+			cb.inputEl.addClass("popcorn-md-input");
 		});
   	}
 
@@ -73,7 +73,7 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 						this.plugin.settings.APIKey = value;
 						await this.plugin.saveSettings();
 					});
-				text.inputEl.style.width = '100%';
+				text.inputEl.addClass("popcorn-md-input");
 			});
   	}
 
@@ -108,7 +108,7 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 						delete (cb.inputEl as HTMLInputElement).dataset['iso'];
 					});
-				cb.inputEl.style.width = '100%';
+				cb.inputEl.addClass("popcorn-md-input");
 			})
 	}
 
