@@ -49,7 +49,7 @@ export class SearchModal extends Modal {
                             return;
                         }
                         if (note) {
-                            this.app.workspace.openLinkText(note.path, "", true);
+                            await this.app.workspace.openLinkText(note.path, "", true);
                         }
                         this.close();
                     });

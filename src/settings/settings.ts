@@ -44,9 +44,9 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 			}
 			cb.setPlaceholder('Example: templates/template-file')
 			.setValue(this.plugin.settings.templateFile)
-			.onChange(newTemplateFile => {
+			.onChange(async newTemplateFile => {
 				this.plugin.settings.templateFile = newTemplateFile;
-				this.plugin.saveSettings();
+				await this.plugin.saveSettings();
 			});
 			cb.inputEl.addClass("popcorn-md-input");
 		});
