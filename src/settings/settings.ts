@@ -4,19 +4,20 @@ import { LANGUAGES } from './language/languages';
 import { createTemplateFileSetting } from './TemplateFileSetting';
 import { createAPIKeySetting } from './APIKeySetting';
 import { createLanguageSetting } from './LangugeSetting';
+import { createDefaultFolderSetting } from './DefaultFolder';
 
 export interface PopcornMDSettings {
 	APIKey: string;
 	templateFile: string;
 	language: string;
-	test: string;
+	defaultFoder: string;
 }
 
 export const DEFAULT_SETTINGS: PopcornMDSettings = {
 	APIKey: '',
 	templateFile: '',
 	language: 'en',
-	test: ''
+	defaultFoder: ''
 };
 
 export class PopcornMDSettingTab extends PluginSettingTab {
@@ -31,8 +32,8 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 		const { containerEl } = this;
 
 		containerEl.empty();
-		console.log(LANGUAGES.length);
 		createTemplateFileSetting(containerEl, this.plugin);
+		createDefaultFolderSetting(containerEl, this.plugin);
 		createAPIKeySetting(containerEl, this.plugin);
 		createLanguageSetting(containerEl, this.plugin);
 	}
