@@ -2,9 +2,11 @@ import { TAbstractFile, TFile, Vault } from "obsidian";
 import { Movie } from "../models/Movie";
 
 export class MovieNoteService {
-    private vault: Vault; 
-    constructor(_vault: Vault) {
+    private vault: Vault;
+    private defaultFolderPath: string;
+    constructor(_vault: Vault, defaultFolderPath: string) {
         this.vault = _vault;
+        this.defaultFolderPath = defaultFolderPath;
     };
 
     async createMovieNote(movie: Movie, templatePath: string): Promise<TFile> {
@@ -14,13 +16,13 @@ export class MovieNoteService {
         };
         const fileName = `${movie.title.replace(/[\\/:*?"<>|]/g, "_")}`;
 
-        if(this.getAbstractFileByPath(`${fileName}.md`)){
+        if(this.getAbstractFileByPath(`${this.defaultFolderPath}/${fileName}.md`)){
             throw Error("Movie note is already exist")
         }
         
         const templateContent = await this.vault.read(templateFile);
         const noteContent = this.renderMovieNoteFromTemplate(movie, templateContent);
-        const noteFile = await this.vault.create(`${fileName}.md`, noteContent);
+        const noteFile = await this.vault.create(`${this.defaultFolderPath}/${fileName}.md`, noteContent);
         return noteFile;
     }
 

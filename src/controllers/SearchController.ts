@@ -10,14 +10,12 @@ export class SearchController {
     private genreService: TMDbGanreService;
     private movieService: TMDbMovieService;
     private movieNoteService: MovieNoteService;
-    private plugin: PopcornMD;
     private templatePath: string;
 
     constructor(app: App, settings: PopcornMDSettings, plugin: PopcornMD) {
         this.genreService = new TMDbGanreService({ apiKey: settings.APIKey, language: settings.language });
         this.movieService = new TMDbMovieService({ apiKey: settings.APIKey, language: settings.language });
-        this.movieNoteService = new MovieNoteService(plugin.app.vault);
-        this.plugin = plugin;
+        this.movieNoteService = new MovieNoteService(plugin.app.vault, settings.defaultFoder);
         this.templatePath = settings.templateFile;
     }
 
