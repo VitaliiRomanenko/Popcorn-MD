@@ -30,7 +30,7 @@ export class LanguageSuggest extends AbstractInputSuggest<Language> {
     }
     selectSuggestion(item: Language): void {
         this.inputEl.value = item.name || item.english_name;
-        (this.inputEl as HTMLInputElement).dataset['iso'] = item.iso_639_1;
+        this.inputEl.dataset['iso'] = item.iso_639_1;
         this.inputEl.trigger('input');
     }
 }

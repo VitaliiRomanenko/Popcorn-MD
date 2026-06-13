@@ -95,7 +95,7 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 				cb.setPlaceholder('For example: Ukrainian, Українська, uk')
 					.setValue(this.getLanguageDisplayName(this.plugin.settings.language))
 					.onChange(async (value) => {
-						const isoFromDataset = (cb.inputEl as HTMLInputElement).dataset['iso'];
+						const isoFromDataset = cb.inputEl.dataset['iso'];
 						if (isoFromDataset) {
 							this.plugin.settings.language = isoFromDataset;
 						} else {
@@ -106,7 +106,7 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 							this.plugin.settings.language = found ? found.iso_639_1 : 'en';
 						}
 						await this.plugin.saveSettings();
-						delete (cb.inputEl as HTMLInputElement).dataset['iso'];
+						delete cb.inputEl.dataset['iso'];
 					});
 				cb.inputEl.addClass("popcorn-md-input");
 			})
