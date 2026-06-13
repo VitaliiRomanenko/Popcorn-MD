@@ -5,19 +5,22 @@ import { createTemplateFileSetting } from './TemplateFileSetting';
 import { createAPIKeySetting } from './APIKeySetting';
 import { createLanguageSetting } from './LangugeSetting';
 import { createDefaultFolderSetting } from './DefaultFolder';
+import { createAdultSetting } from './AdultSetting';
 
 export interface PopcornMDSettings {
 	APIKey: string;
 	templateFile: string;
 	language: string;
 	defaultFoder: string;
+	adult_content: boolean;
 }
 
 export const DEFAULT_SETTINGS: PopcornMDSettings = {
 	APIKey: '',
 	templateFile: '',
 	language: 'en',
-	defaultFoder: ''
+	defaultFoder: '',
+	adult_content: false
 };
 
 export class PopcornMDSettingTab extends PluginSettingTab {
@@ -36,5 +39,6 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 		createDefaultFolderSetting(containerEl, this.plugin);
 		createAPIKeySetting(containerEl, this.plugin);
 		createLanguageSetting(containerEl, this.plugin);
+		createAdultSetting(containerEl, this.plugin);
 	}
 }

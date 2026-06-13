@@ -1,18 +1,14 @@
 import { requestUrl } from "obsidian";
 import { AuthResponse } from "../models/AuthResponce";
-
-export interface PluginsSettings {
-    apiKey: string;
-    language: string;
-}
+import { PopcornMDSettings } from "../settings/settings";
 
 export class TMDbAPIService {
     private apiKey: string;
     private language: string;
     private readonly BASE_URL = "https://api.themoviedb.org/3";
 
-    constructor(settings: PluginsSettings){
-        this.apiKey = settings.apiKey;
+    constructor(settings: PopcornMDSettings){
+        this.apiKey = settings.APIKey;
         this.language = settings.language;
     }
 

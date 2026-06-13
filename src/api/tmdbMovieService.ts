@@ -1,12 +1,15 @@
 import { Movie } from "../models/Movie";
 import { SearchResult, SearchMovie, FindResponce } from "../models/SearchResult";
-import { TMDbAPIService, PluginsSettings } from "./tmdbAPIService";
+import { PopcornMDSettings } from "../settings/settings";
+import { TMDbAPIService } from "./tmdbAPIService";
 
 
 export class TMDbMovieService extends TMDbAPIService {
+    private adultContent: boolean;
 
-    constructor(settings: PluginsSettings) {
+    constructor(settings: PopcornMDSettings) {
         super(settings);
+        this.adultContent = settings.adult_content;
     }
 
     public async searchMovie (query: string): Promise<SearchResult>{
@@ -59,7 +62,8 @@ export class TMDbMovieService extends TMDbAPIService {
 
     private async searchMovieByName(query: string): Promise<SearchResult>{
         const data = await this.fetchFromTMDb<SearchResult>('/search/movie', {
-            query: query
+            query: query,
+            include_adult: String(this.adultContent)
         });
         return data;
     }
