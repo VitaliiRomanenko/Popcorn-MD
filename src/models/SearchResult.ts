@@ -15,11 +15,14 @@ export interface SearchMovie {
   poster_path?: string;
   original_language: string;
   genre_ids: number[];
-  genre_names: [string];
   popularity: number;
   release_date: string;
   softcore: boolean;
   video: boolean;
   vote_average: number;
   vote_count: number;
+}
+
+export interface FindResponce {
+   movie_results: SearchMovie[];
 }

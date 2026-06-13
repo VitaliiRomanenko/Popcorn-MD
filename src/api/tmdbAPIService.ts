@@ -1,6 +1,3 @@
-import { Movie } from "../models/Movie";
-import { SearchResult, SearchMovie } from "../models/SearchResult";
-
 export interface PluginsSettings {
     apiKey: string;
     language: string;
@@ -16,7 +13,7 @@ export class TMDbAPIService {
         this.language = settings.language;
     }
 
-    protected async fetchFromTMDb(endpoint: string, params: Record<string, string> = {}): Promise<any> {
+    protected async fetchFromTMDb<T>(endpoint: string, params: Record<string, string> = {}): Promise<T> {
         const url = new URL (`${this.BASE_URL}${endpoint}`);
         url.searchParams.append("api_key", this.apiKey);
         url.searchParams.append("language", this.language);
@@ -26,14 +23,18 @@ export class TMDbAPIService {
         }
         
         const response = await fetch(url.toString());
+        if(response.status === 404){
+            throw new Error(`TMDb API not found: ${endpoint}`);
+        }
+
         if (!response.ok){
             throw new Error(`TMDb API error: ${response.status} ${response.statusText}`);
         }
-        return response.json();
+        return response.json() as Promise<T>;
     }
 
     public async checkAPIKey(): Promise<boolean>{
-        const resp = await this.fetchFromTMDb('/authentication');
+        const resp = await this.fetchFromTMDb<AuthResponse>('/authentication');
         return resp.success;
     }
 }
