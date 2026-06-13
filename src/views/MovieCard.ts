@@ -1,4 +1,3 @@
-import { info } from "console";
 import { SearchMovie } from "../models/SearchResult";
 
 export function createMovieCard(movie: SearchMovie, genresMap: Record<number, string>): HTMLElement {
