@@ -1,4 +1,4 @@
-import { App, Modal, TFile } from "obsidian";
+import { App, Modal, TFile, Notice } from "obsidian";
 import { PopcornMDSettings } from "../settings/settings";
 import PopcornMD from "../main";
 import { SearchController } from "../controllers/SearchController";
@@ -41,8 +41,14 @@ export class SearchModal extends Modal {
                         result.results.flatMap(m => m.genre_ids)
                     );
                     this.view.showResults(result, genresMap, async (movieId: number) => {
-                        const note = await this.controller.createNote(movieId);
-                        if (note instanceof TFile) {
+                        let note: TFile | null = null;
+                        try{
+                            note = await this.controller.createNote(movieId);
+                        } catch (error: any){
+                            new Notice(error.message)
+                            return;
+                        }
+                        if (note) {
                             this.app.workspace.openLinkText(note.path, "", true);
                         }
                         this.close();

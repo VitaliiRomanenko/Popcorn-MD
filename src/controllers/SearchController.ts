@@ -1,20 +1,22 @@
-import { App, TFile } from "obsidian";
+import { App, TFile, Notice } from "obsidian";
 import { SearchResult } from "../models/SearchResult";
 import { TMDbGanreService } from "../api/tmdbGenreService";
 import { TMDbMovieService } from "../api/tmdbMovieService";
-import { createMovieNote } from "../commands/createMovieNote";
+import { MovieNoteService } from "../commands/MovieNoteService";
 import { PopcornMDSettings } from "../settings/settings";
 import PopcornMD from "../main";
 
 export class SearchController {
     private genreService: TMDbGanreService;
     private movieService: TMDbMovieService;
+    private movieNoteService: MovieNoteService;
     private plugin: PopcornMD;
     private templatePath: string;
 
     constructor(app: App, settings: PopcornMDSettings, plugin: PopcornMD) {
         this.genreService = new TMDbGanreService({ apiKey: settings.APIKey, language: settings.language });
         this.movieService = new TMDbMovieService({ apiKey: settings.APIKey, language: settings.language });
+        this.movieNoteService = new MovieNoteService(plugin.app.vault);
         this.plugin = plugin;
         this.templatePath = settings.templateFile;
     }
@@ -36,11 +38,9 @@ export class SearchController {
         if (!movie) {
             return null;
         }
-        const note = await createMovieNote(movie, this.plugin.app.vault, this.templatePath);
-        if (note instanceof TFile) {
-            return note;
-        }
-        return null;
+
+        const note = await this.movieNoteService.createMovieNote(movie, this.templatePath);
+        return note;
     }
 
     buildGenresMap(genreIds: number[]): Record<number, string> {
@@ -52,3 +52,4 @@ export class SearchController {
         return genresMap;
     }
 }
+

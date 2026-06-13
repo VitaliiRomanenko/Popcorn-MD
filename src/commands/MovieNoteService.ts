@@ -1,16 +1,36 @@
+import { TAbstractFile, TFile, Vault } from "obsidian";
 import { Movie } from "../models/Movie";
-import { TFile, Vault } from "obsidian";
 
-export async function createMovieNote(movie: Movie, vault: Vault, templatePath: string): Promise<TFile | null> {
-    const templateFile = vault.getAbstractFileByPath(templatePath);
-    if (!(templateFile instanceof TFile)) {
-        console.error("Template file not found");
-        return null;
+export class MovieNoteService {
+    private vault: Vault; 
+    constructor(_vault: Vault) {
+        this.vault = _vault;
+    };
+
+    async createMovieNote(movie: Movie, templatePath: string): Promise<TFile> {
+        const templateFile = this.getAbstractFileByPath(templatePath);
+        if (!(templateFile instanceof TFile)) {
+            throw Error("Template file not found");
+        };
+        const fileName = `${movie.title.replace(/[\\/:*?"<>|]/g, "_")}`;
+
+        if(this.getAbstractFileByPath(`${fileName}.md`)){
+            throw Error("Movie note is already exist")
+        }
+        
+        const templateContent = await this.vault.read(templateFile);
+        const noteContent = this.renderMovieNoteFromTemplate(movie, templateContent);
+        const noteFile = await this.vault.create(`${fileName}.md`, noteContent);
+        return noteFile;
     }
 
-    const templateContent = await vault.read(templateFile);
+    private getAbstractFileByPath(filePath: string): TAbstractFile | null{
+        const file = this.vault.getAbstractFileByPath(filePath);
+        return file
+    }
 
-    const noteContent = templateContent
+    private renderMovieNoteFromTemplate(movie: Movie, template: string): string {
+        return template
         .replace('"{{adult}}"', movie.adult ? "true" : "false")
         .replace('"{{collection}}"', `"${movie.belongs_to_collection?.name ?? ""}"`)
         .replace('"{{budget}}"', `"${String(movie.budget ?? "")}"`)
@@ -26,7 +46,7 @@ export async function createMovieNote(movie: Movie, vault: Vault, templatePath: 
         .replace('"{{poster_path}}"', movie.poster_path ?? "")
         .replace('"{{production_companies}}"', `[${movie.production_companies.map(c => `"[[${c.name}]]"`).join(", ")}]`)
         .replace('"{{production_countries}}"', `[${movie.production_countries.map(c => `"[[${c.name}]]"`).join(", ")}]`)
-        .replace('"{{release_date}}"', formatDate(movie.release_date) ?? "")
+        .replace('"{{release_date}}"', this.formatDate(movie.release_date) ?? "")
         .replace('"{{revenue}}"', String(movie.revenue))
         .replace('"{{runtime}}"', String(movie.runtime))
         .replace('"{{softcore}}"', String(movie.softcore ?? ""))
@@ -36,13 +56,11 @@ export async function createMovieNote(movie: Movie, vault: Vault, templatePath: 
         .replace('"{{title}}"', `'${movie.title ?? ""}'`)
         .replace('"{{vote_average}}"', String(movie.vote_average))
         .replace('"{{vote_count}}"', String(movie.vote_count));
+    }
 
-    const fileName = `${movie.title.replace(/[\\/:*?"<>|]/g, "_")}`;
-    const note = await vault.create(`${fileName}.md`, noteContent);
-    return note;
-}
-
-function formatDate(dateStr: string, locale: string = "default", options?: Intl.DateTimeFormatOptions): string {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString(locale, options);
+    private formatDate(dateStr: string, locale: string = "default", options?: Intl.DateTimeFormatOptions): string {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString(locale, options);
+    }
+    
 }
