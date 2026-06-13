@@ -27,7 +27,7 @@ export class PopcornMDSettingTab extends PluginSettingTab {
 	}
 
 	private createTemplateFileSetting(containerEl: HTMLElement) {
-    	const templateFileDesc = document.createDocumentFragment();
+    	const templateFileDesc = activeDocument.createDocumentFragment();
 		templateFileDesc.createDiv({ text: 'Files will be available as templates.' });
 		templateFileDesc.createEl('p', {
 			text: "You can use variables like {{title}} and {{year}} in the template.",
@@ -53,7 +53,7 @@ export class PopcornMDSettingTab extends PluginSettingTab {
   	}
 
 	private createAPIKeySetting(containerEl: HTMLElement) {
-    	const APIKeyDesc = document.createDocumentFragment();
+    	const APIKeyDesc = activeDocument.createDocumentFragment();
 
 		APIKeyDesc.createEl('span');
 		APIKeyDesc.appendText("Your TMDb API Key. ");
@@ -78,7 +78,7 @@ export class PopcornMDSettingTab extends PluginSettingTab {
   	}
 
 	private createLanguageSetting(containerEl: HTMLElement) {
-		const desc = document.createDocumentFragment();
+		const desc = activeDocument.createDocumentFragment();
 		desc.createEl('span', {
 			text: 'Note language (if not available in the database, English will be used).'
 		})
