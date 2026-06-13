@@ -24,6 +24,7 @@
   margin: 5px 0px;
   box-sizing: border-box;
   padding: 10px;
+  position: relative;
 }
 .card .movie-photo {
   flex-shrink: 0;
@@ -56,6 +57,7 @@
   margin-top: 3px;
   text-align: justify;
   overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .card .genres .genre {
@@ -111,4 +113,14 @@
   top: 0;
   left: 0;
   overflow: hidden;
+}
+
+.adult_element {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.adult_element svg {
+  stroke: #ff8901
 }
