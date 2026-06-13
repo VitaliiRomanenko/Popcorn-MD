@@ -29,3 +29,7 @@ Popcorn-MD.code-workspace
 
 # Environment variables
 .env
+
+# Continue skills
+.continue
+skills-lock.json
