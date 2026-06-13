@@ -1,3 +1,5 @@
+import { requestUrl } from "obsidian";
+
 export interface PluginsSettings {
     apiKey: string;
     language: string;
@@ -22,15 +24,15 @@ export class TMDbAPIService {
             url.searchParams.append(key, value);
         }
         
-        const response = await fetch(url.toString());
+        const response = await requestUrl(url.toString());
         if(response.status === 404){
             throw new Error(`TMDb API not found: ${endpoint}`);
         }
 
-        if (!response.ok){
-            throw new Error(`TMDb API error: ${response.status} ${response.statusText}`);
+        if (response.status < 200 || response.status >= 300){
+            throw new Error(`TMDb API error: ${response.status} ${response.text}`);
         }
-        return response.json() as Promise<T>;
+        return response.json as T;
     }
 
     public async checkAPIKey(): Promise<boolean>{
