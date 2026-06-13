@@ -1,92 +1,175 @@
-# Obsidian Sample Plugin
+# PopcornMD
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+![Obsidian](https://img.shields.io/badge/Obsidian-Plugin-7C3AED?style=flat-square&logo=obsidian)
+![Version](https://img.shields.io/badge/Version-0.1.0-blue?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+**PopcornMD** is an Obsidian plugin that lets you search for movies and TV shows via [TMDb](https://www.themoviedb.org/) and automatically create beautiful, structured notes from a template — all without leaving Obsidian.
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
+## Features
 
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open modal (simple)" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and outputs a Notice on click.
-- Registers a global interval which logs 'setInterval' to the console.
+- **Search by title or IMDb ID** — Find any movie quickly.
+- **Auto-generated notes** — Creates an Obsidian note pre-filled with movie metadata (title, year, genres, poster, synopsis, rating, cast, etc.).
+- **Customizable templates** — Design your own note layout using placeholders.
+- **Minimal UI** — A clean modal search interface for distraction-free workflow.
 
-## First time developing plugins?
+## Installation
 
-Quick starting guide for new plugin devs:
+### From Obsidian Community Plugins (once released)
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `src/main.ts` to `main.js`.
-- Make changes to `src/main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+1. Open **Settings → Community plugins**.
+2. Disable **Safe mode**.
+3. Click **Browse** and search for **"PopcornMD"**.
+4. Install and enable the plugin.
 
-## Releasing new releases
+### Manual (developer preview)
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+1. Download the latest release from [Releases](https://github.com/your-username/popcornmd/releases).
+2. Extract `main.js`, `manifest.json`, and `styles.css` into `<vault>/.obsidian/plugins/popcornmd/`.
+3. Reload Obsidian and enable the plugin in **Settings → Community plugins**.
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+## Getting Started
 
-## Adding your plugin to the community plugin list
+1. **Get a TMDb API key** — Sign up at [themoviedb.org](https://www.themoviedb.org/signup) and request an API key.
+2. **Open Plugin Settings** — Navigate to **Settings → Popcorn MD**.
+3. **Select template** — Select file from list
+4. **Enter your API key** — Paste your TMDb API key and click **Save**.
+5. **Open the movie search** — Use the command palette (`Cmd+P` / `Ctrl+P`) and run **"Popcorn MD: Create new movie note"**, or click the 🍿 ribbon icon.
+6. **Select a movie** — Type a title (or IMDb ID starting with `tt...`) and choose from the results.
+7. **Note created!** — A new note is generated using your selected template.
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+## Commands
 
-## How to use
+| Command | Description |
+|---|---|
+| **Popcorn MD: Create new movie note** | Opens the movie search modal |
 
-- Clone this repo.
-- Make sure your NodeJS is at least v18 (`node --version`).
-- `npm i` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+## Settings
 
-## Manually installing the plugin
+| Setting | Description |
+|---|---|
+| **TMDb API Key** | Your TMDb API key (required) |
+| **Default language** | Language for movie data |
+| **Template path** | Path to your custom template file (relative to vault root) |
+| **Default folder** *(added in v0.2)* | Where new movie notes are saved |
+| **Include poster** *(added in v0.2)* | Toggle to embed movie poster image in notes |
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+## Template System
 
-## Improve code quality with eslint
+This template helps you automatically generate `.md` files with movie metadata.  
+All variables are placeholders wrapped in double braces `{{variable}}` and are usually filled from APIs (e.g., TMDb/IMDb).
 
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code.
-- This project already has eslint preconfigured, you can invoke a check by running`npm run lint`
-- Together with a custom eslint [plugin](https://github.com/obsidianmd/eslint-plugin) for Obsidan specific code guidelines.
-- A GitHub action is preconfigured to automatically lint every commit on all branches.
+> **Note on array fields:** The fields `genres`, `origin_country`, `production_companies`, `production_countries`, and `spoken_languages` are currently stored as Obsidian links (for example, `[[Action]]`, `[[Drama]]`). In future versions, you’ll be able to choose how these values are stored — as links, lists, or comma‑separated strings — through template configuration options.
 
-## Funding URL
-
-You can include funding URLs where people who use your plugin can financially support it.
-
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-	"fundingUrl": "https://buymeacoffee.com"
-}
+### Template Fields
+> This is a sample template where data is stored as metadata,
+> but you can use these fields in any way you like.
+```Markdown
+	---
+	adult: "{{adult}}"
+	belongs_to_collection: "{{collection}}"
+	budget: "{{budget}}"
+	genres: "{{genres}}"
+	homepage: "{{homepage}}"
+	TMDbID: "{{id}}"
+	IMDbID: "{{imdb_id}}"
+	origin_country: "{{origin_country}}"
+	original_language: "{{original_language}}"
+	original_title: "{{original_title}}"
+	overview: "{{overview}}"
+	popularity: "{{popularity}}"
+	poster_path: "{{poster_path}}"
+	production_companies: "{{production_companies}}"
+	production_countries: "{{production_countries}}"
+	release_date: "{{release_date}}"
+	revenue: "{{revenue}}"
+	runtime: "{{runtime}}"
+	softcore: "{{softcore}}"
+	spoken_languages: "{{spoken_languages}}"
+	status: "{{status}}"
+	tagline: "{{tagline}}"
+	title: "{{title}}"
+	vote_average: "{{vote_average}}"
+	vote_count: "{{vote_count}}"
+	---
 ```
 
-If you have multiple URLs, you can also do:
+### 📊 Template Field Reference
 
-```json
-{
-	"fundingUrl": {
-		"Buy Me a Coffee": "https://buymeacoffee.com",
-		"GitHub Sponsor": "https://github.com/sponsors",
-		"Patreon": "https://www.patreon.com/"
-	}
-}
+| Field | Example Value | Description |
+|-------|---------------|-------------|
+| **[tags](ca://s?q=tags_md_field)** | `Movie` | Category of the file, always `Movie`. |
+| **[adult](ca://s?q=adult_md_field)** | `false` | Whether the movie is adult content (`true/false`). |
+| **[belongs_to_collection](ca://s?q=collection_md_field)** | `The Dark Knight Trilogy` | Collection/series name if applicable. |
+| **[budget](ca://s?q=budget_md_field)** | `185000000` | Production budget in USD. |
+| **[genres](ca://s?q=genres_md_field)** | `Action, Drama` | List of genres. |
+| **[homepage](ca://s?q=homepage_md_field)** | `https://www.dc.com/batman` | Official movie website. |
+| **[TMDbID](ca://s?q=TMDbID_md_field)** | `155` | Unique TMDb identifier. |
+| **[IMDbID](ca://s?q=IMDbID_md_field)** | `tt0468569` | Unique IMDb identifier. |
+| **[origin_country](ca://s?q=origin_country_md_field)** | `US` | Country of origin. |
+| **[original_language](ca://s?q=original_language_md_field)** | `en` | Original language. |
+| **[original_title](ca://s?q=original_title_md_field)** | `The Dark Knight` | Original movie title. |
+| **[overview](ca://s?q=overview_md_field)** | `Batman faces Joker...` | Short synopsis/description. |
+| **[popularity](ca://s?q=popularity_md_field)** | `92.5` | Popularity score from TMDb. |
+| **[poster_path](ca://s?q=poster_path_md_field)** | `/qJ2tW6WMUDux911r6m7haRef0WH.jpg` | Path to poster image. |
+| **[production_companies](ca://s?q=production_companies_md_field)** | `Warner Bros.` | Studios involved in production. |
+| **[production_countries](ca://s?q=production_countries_md_field)** | `United States` | Countries involved in production. |
+| **[release_date](ca://s?q=release_date_md_field)** | `2008-07-18` | Release date. |
+| **[revenue](ca://s?q=revenue_md_field)** | `1004558444` | Box office revenue in USD. |
+| **[runtime](ca://s?q=runtime_md_field)** | `152` | Duration in minutes. |
+| **[softcore](ca://s?q=softcore_md_field)** | `false` | Flag for soft erotic content. |
+| **[spoken_languages](ca://s?q=spoken_languages_md_field)** | `English, Mandarin` | Spoken languages in the movie. |
+| **[status](ca://s?q=status_md_field)** | `Released` | Release status. |
+| **[tagline](ca://s?q=tagline_md_field)** | `Why So Serious?` | Promotional tagline. |
+| **[title](ca://s?q=title_md_field)** | `The Dark Knight` | Localized movie title. |
+| **[vote_average](ca://s?q=vote_average_md_field)** | `8.5` | Average user rating. |
+| **[vote_count](ca://s?q=vote_count_md_field)** | `29000` | Number of votes. |
+
+---
+
+### How to Create Your Own Template
+
+1. Create a file named `Template.md`.
+2. Add the required fields using the format `{{variable}}`.
+3. Use an API (TMDb/IMDb) to populate values dynamically.
+4. Save the file in your notes system (e.g., Obsidian).
+
+## Development
+
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Setup
+
+```bash
+git clone https://github.com/VitaliiRomanenko/popcorn-md
+cd popcornmd
+npm install
 ```
 
-## API Documentation
+### Build & Watch
 
-See https://docs.obsidian.md
+```bash
+npm run dev    # Development with watch mode
+npm run build  # Production build
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## License
+
+MIT
+
+## Disclaimer
+
+This plugin is not affiliated with, endorsed by, or sponsored by TMDb or Obsidian. Movie data is provided by [The Movie Database (TMDb)](https://www.themoviedb.org/). You must obtain your own API key from TMDb to use this plugin.
+
+---
+
+*PopcornMD — Because your movie collection deserves better than plain text.*
