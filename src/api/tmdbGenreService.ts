@@ -1,11 +1,12 @@
 import { Genre, GenreResponce} from "../models/Genre";
-import { TMDbAPIService, PluginsSettings } from "./tmdbAPIService";
+import { PopcornMDSettings } from "../settings/settings";
+import { TMDbAPIService } from "./tmdbAPIService";
 
 
 export class TMDbGanreService extends TMDbAPIService {
     private genreMap = new Map<number, string>();
 
-    constructor(settings: PluginsSettings) {
+    constructor(settings: PopcornMDSettings) {
         super(settings);
     }
 
