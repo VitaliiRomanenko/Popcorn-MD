@@ -1,3 +1,4 @@
+import { setIcon } from "obsidian";
 import { SearchMovie } from "../models/SearchResult";
 
 export function createMovieCard(movie: SearchMovie, genresMap: Record<number, string>): HTMLElement {
@@ -61,6 +62,16 @@ export function createMovieCard(movie: SearchMovie, genresMap: Record<number, st
   const ratingEl = renderStars(movie.vote_average);
   subInfoDiv.appendChild(ratingEl);
   infoDiv.appendChild(subInfoDiv);
+
+  //#endregion
+
+  //#region adult
+  if(movie.adult){
+    const adultEl = activeDocument.createElement("div");
+    adultEl.className= "adult_element";
+    setIcon(adultEl, 'flame');
+    card.appendChild(adultEl);
+  }
 
   //#endregion
 
