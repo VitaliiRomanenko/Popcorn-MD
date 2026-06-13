@@ -37,23 +37,7 @@ export class TMDbMovieService extends TMDbAPIService {
             data = await this.fetchFromTMDb<FindResponce>(`/find/${query}`, {
                 external_source: "imdb_id"
             });
-            movies = (data.movie_results ?? []).map((raw: any) => ({
-                adult: raw.adult,
-                backdrop_path: raw.backdrop_path,
-                id: raw.id,
-                title: raw.title,
-                original_title: raw.original_title,
-                overview: raw.overview,
-                poster_path: raw.poster_path,
-                original_language: raw.original_language,
-                genre_ids: raw.genre_ids,
-                popularity: raw.popularity,
-                release_date: raw.release_date,
-                softcore: raw.softcore,
-                video: raw.video,
-                vote_average: raw.vote_average,
-                vote_count: raw.vote_count
-            }));
+            movies = (data.movie_results ?? []).map((raw: any) => raw as SearchMovie);
             return {
                 page: 1,
                 results: movies,
