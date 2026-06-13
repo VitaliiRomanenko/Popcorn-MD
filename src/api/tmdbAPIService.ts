@@ -1,4 +1,5 @@
 import { requestUrl } from "obsidian";
+import { AuthResponse } from "../models/AuthResponce";
 
 export interface PluginsSettings {
     apiKey: string;

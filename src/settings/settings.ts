@@ -1,4 +1,4 @@
-import { App, PluginSettingTab, Setting, Notice, TFile } from 'obsidian';
+import { App, PluginSettingTab, Setting } from 'obsidian';
 import { FileSuggest } from './suggester/FileSuggest';
 import { LanguageSuggest } from './suggester/LanguageSuggest';
 import PopcornMD from '../main';

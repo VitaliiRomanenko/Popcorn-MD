@@ -13,9 +13,9 @@ export class TMDbMovieService extends TMDbAPIService {
         const imdbPattern = /^tt\d{7,}$/; //tt0133093 IMDb_id format
 
         if (imdbPattern.test(query)) {
-            return this.getMovieByIMDbId(query)
+            return await this.getMovieByIMDbId(query)
         } else {
-            return this.searchMovieByName(query);
+            return await this.searchMovieByName(query);
         }
     }
 
@@ -37,7 +37,7 @@ export class TMDbMovieService extends TMDbAPIService {
             data = await this.fetchFromTMDb<FindResponce>(`/find/${query}`, {
                 external_source: "imdb_id"
             });
-            movies = (data.movie_results ?? []).map((raw: any) => raw as SearchMovie);
+            movies = (data.movie_results ?? []).map((raw: SearchMovie) => raw);
             return {
                 page: 1,
                 results: movies,

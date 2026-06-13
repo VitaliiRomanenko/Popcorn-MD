@@ -1,4 +1,4 @@
-import { App, TFile, Notice } from "obsidian";
+import { App, TFile } from "obsidian";
 import { SearchResult } from "../models/SearchResult";
 import { TMDbGanreService } from "../api/tmdbGenreService";
 import { TMDbMovieService } from "../api/tmdbMovieService";

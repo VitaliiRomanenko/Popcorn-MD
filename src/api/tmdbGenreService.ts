@@ -1,5 +1,4 @@
-import { Genre} from "../models/Genre";
-import { SearchResult, SearchMovie } from "../models/SearchResult";
+import { Genre, GenreResponce} from "../models/Genre";
 import { TMDbAPIService, PluginsSettings } from "./tmdbAPIService";
 
 
@@ -11,7 +10,7 @@ export class TMDbGanreService extends TMDbAPIService {
     }
 
     public async init(): Promise<void>{
-        const data = await this.fetchFromTMDb(`/genre/movie/list`);
+        const data = await this.fetchFromTMDb<GenreResponce>(`/genre/movie/list`);
         data.genres.forEach((g: Genre) => {
             this.genreMap.set(g.id, g.name);
         });
