@@ -1,5 +1,5 @@
-import PopcornMD from "../main";
-import { FileSuggest } from "./suggester/FileSuggest";
+import PopcornMD from "../../main";
+import { FileSuggest } from "../suggester/FileSuggest";
 import { Setting } from "obsidian";
 
 export function createTemplateFileSetting(containerEl: HTMLElement, plugin: PopcornMD) {

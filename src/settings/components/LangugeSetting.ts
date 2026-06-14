@@ -1,7 +1,7 @@
 import { Setting } from "obsidian";
-import { LanguageSuggest } from "./suggester/LanguageSuggest";
-import { LANGUAGES } from "./language/languages";
-import PopcornMD from "../main";
+import { LanguageSuggest } from "../suggester/LanguageSuggest";
+import { LANGUAGES } from "../language/languages";
+import PopcornMD from "../../main";
 
 export function createLanguageSetting(containerEl: HTMLElement, plugin: PopcornMD) {
     const desc = activeDocument.createDocumentFragment();

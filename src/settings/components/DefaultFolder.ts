@@ -1,5 +1,5 @@
-import PopcornMD from "../main";
-import { FolderSuggest } from "./suggester/FolderSuggest"
+import PopcornMD from "../../main";
+import { FolderSuggest } from "../suggester/FolderSuggest"
 import { Setting } from "obsidian";
 
 export function createDefaultFolderSetting(containerEl: HTMLElement, plugin: PopcornMD) {

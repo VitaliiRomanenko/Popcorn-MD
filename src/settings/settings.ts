@@ -1,11 +1,10 @@
 import { App, PluginSettingTab } from 'obsidian';
 import PopcornMD from '../main';
-import { LANGUAGES } from './language/languages';
-import { createTemplateFileSetting } from './TemplateFileSetting';
-import { createAPIKeySetting } from './APIKeySetting';
-import { createLanguageSetting } from './LangugeSetting';
-import { createDefaultFolderSetting } from './DefaultFolder';
-import { createAdultSetting } from './AdultSetting';
+import { createTemplateFileSetting } from './components/TemplateFileSetting';
+import { createAPIKeySetting } from './components/APIKeySetting';
+import { createLanguageSetting } from './components/LangugeSetting';
+import { createDefaultFolderSetting } from './components/DefaultFolder';
+import { createAdultSetting } from './components/AdultSetting';
 
 export interface PopcornMDSettings {
 	APIKey: string;
