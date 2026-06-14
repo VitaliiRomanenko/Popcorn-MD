@@ -1,5 +1,5 @@
 import { Setting } from 'obsidian';
-import PopcornMD from '../main';
+import PopcornMD from '../../main';
 
 export function  createAdultSetting(containerEl: HTMLElement, plugin: PopcornMD) {
     new Setting(containerEl)

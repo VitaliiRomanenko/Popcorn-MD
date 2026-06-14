@@ -1,5 +1,5 @@
 import { Setting } from 'obsidian';
-import PopcornMD from '../main';
+import PopcornMD from '../../main';
 
 export function  createAPIKeySetting(containerEl: HTMLElement, plugin: PopcornMD) {
     const APIKeyDesc = activeDocument.createDocumentFragment();
