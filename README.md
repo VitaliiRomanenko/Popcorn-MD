@@ -1,7 +1,7 @@
 # Popcorn-MD
 
 ![Obsidian](https://img.shields.io/badge/Obsidian-Plugin-7C3AED?style=flat-square&logo=obsidian)
-![Version](https://img.shields.io/badge/Version-0.1.0-blue?style=flat-square)
+![Version](https://img.shields.io/badge/Version-0.2.0-blue?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 **PopcornMD** is an Obsidian plugin that lets you search for movies and TV shows via [TMDb](https://www.themoviedb.org/) and automatically create beautiful, structured notes from a template — all without leaving Obsidian.
@@ -165,6 +165,10 @@ npm run lint
 ## License
 
 MIT
+
+## Contact
+
+For questions, feedback, or contributions, reach out to **Vitalii Romanenko** at [vitalii.o.romanenko@gmail.com](mailto:vitalii.o.romanenko@gmail.com).
 
 ## Disclaimer
 
