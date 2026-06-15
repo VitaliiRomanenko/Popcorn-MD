@@ -7,10 +7,7 @@ export function createDefaultFolderSetting(containerEl: HTMLElement, plugin: Pop
         .setName('Default folder')
         .setDesc('Specify the folder where all movie notes will be stored')
         .addSearch(cb => {
-            try {
             new FolderSuggest(plugin.app, cb.inputEl);
-            } catch {};
-
             cb.setPlaceholder('Example: Movies/')
             .setValue(plugin.settings.defaultFoder)
             .onChange(async newDefaultFolder => {
