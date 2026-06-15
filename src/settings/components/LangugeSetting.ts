@@ -13,9 +13,7 @@ export function createLanguageSetting(containerEl: HTMLElement, plugin: PopcornM
         .setName('Language preference')
         .setDesc(desc)
         .addSearch(cb => {
-            try{
-                new LanguageSuggest(plugin.app, cb.inputEl)
-            } catch {}
+            new LanguageSuggest(plugin.app, cb.inputEl)
             cb.setPlaceholder('For example: Ukrainian, Українська, uk')
                 .setValue(getLanguageDisplayName(plugin.settings.language))
                 .onChange(async (value) => {

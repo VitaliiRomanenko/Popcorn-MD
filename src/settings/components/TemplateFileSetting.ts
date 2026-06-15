@@ -13,10 +13,7 @@ export function createTemplateFileSetting(containerEl: HTMLElement, plugin: Popc
         .setName('Template file')
         .setDesc(templateFileDesc)
         .addSearch(cb => {
-            try {
             new FileSuggest(plugin.app, cb.inputEl);
-            } catch {};
-
             cb.setPlaceholder('Example: templates/template-file')
             .setValue(plugin.settings.templateFile)
             .onChange(async newTemplateFile => {

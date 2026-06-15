@@ -43,22 +43,21 @@ export class SearchModal extends Modal {
         const query = (event.target as HTMLInputElement).value.trim();
         if (query.length === 0) {
             return;
-        };
+        }
         this.view.showLoading();
         try {
             const result = await this.controller.search(query);
             const genresMap = this.controller.buildGenresMap(
                 result.results.flatMap(m => m.genre_ids)
             );
-            this.view.showResults(result, genresMap, async (movieId: number) => {
+            this.view.showResults(result, genresMap, (movieId: number) => {
                 void this.handleMovieSelection(movieId);
             });
         } catch (error) {
             console.error("Search error:", error);
             this.view.showError();
-        };
-    };
-
+        }
+    }
     private async handleMovieSelection(movieId: number) {
         let note: TFile | null = null;
         try {
@@ -70,7 +69,8 @@ export class SearchModal extends Modal {
         }
         if (note) {
             await this.app.workspace.openLinkText(note.path, "", true);
-        };
+        }
         this.close();
-    };
+    }
 };
+
