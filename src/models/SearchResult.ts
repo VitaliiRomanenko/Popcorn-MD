@@ -23,6 +23,6 @@ export interface SearchMovie {
   vote_count: number;
 }
 
-export interface FindResponce {
+export interface FindResponse {
    movie_results: SearchMovie[];
 }

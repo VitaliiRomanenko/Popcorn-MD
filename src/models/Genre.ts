@@ -3,6 +3,6 @@ export interface Genre {
   name: string;
 }
 
-export interface GenreResponce {
+export interface GenreResponse {
   genres: Genre[]
 }
