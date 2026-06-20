@@ -31,7 +31,9 @@ export class SearchModal extends Modal {
             if (event.key === "Enter") {
                 void this.handleSearch(event);
                 input.blur();
-            };
+            } else if (event.key === "Escape") {
+                this.close();
+            }
         });
     }
 
@@ -59,6 +61,7 @@ export class SearchModal extends Modal {
             this.view.showError();
         }
     }
+    
     private async handleMovieSelection(movieId: number) {
         let note: TFile | null = null;
         try {
@@ -73,5 +76,4 @@ export class SearchModal extends Modal {
         }
         this.close();
     }
-};
-
+}
