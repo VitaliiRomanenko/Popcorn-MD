@@ -30,6 +30,7 @@ export class SearchModal extends Modal {
         input.addEventListener("keydown", (event: KeyboardEvent) => {
             if (event.key === "Enter") {
                 void this.handleSearch(event);
+                input.blur();
             };
         });
     }
