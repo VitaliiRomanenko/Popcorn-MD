@@ -1,21 +1,21 @@
 import { App, TFile } from "obsidian";
 import { SearchResult } from "../models/SearchResult";
-import { TMDbGanreService } from "../api/tmdbGenreService";
+import { TMDbGenreService } from "../api/tmdbGenreService";
 import { TMDbMovieService } from "../api/tmdbMovieService";
 import { MovieNoteService } from "../commands/MovieNoteService";
 import { PopcornMDSettings } from "../settings/settings";
 import PopcornMD from "../main";
 
 export class SearchController {
-    private genreService: TMDbGanreService;
+    private genreService: TMDbGenreService;
     private movieService: TMDbMovieService;
     private movieNoteService: MovieNoteService;
     private templatePath: string;
 
     constructor(app: App, settings: PopcornMDSettings, plugin: PopcornMD) {
-        this.genreService = new TMDbGanreService(settings);
+        this.genreService = new TMDbGenreService(settings);
         this.movieService = new TMDbMovieService(settings);
-        this.movieNoteService = new MovieNoteService(plugin.app.vault, settings.defaultFoder);
+        this.movieNoteService = new MovieNoteService(plugin.app.vault, settings.defaultFolder);
         this.templatePath = settings.templateFile;
     }
 

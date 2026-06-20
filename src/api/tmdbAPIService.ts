@@ -1,5 +1,5 @@
 import { requestUrl } from "obsidian";
-import { AuthResponse } from "../models/AuthResponce";
+import { AuthResponse } from "../models/AuthResponse";
 import { PopcornMDSettings } from "../settings/settings";
 
 export class TMDbAPIService {

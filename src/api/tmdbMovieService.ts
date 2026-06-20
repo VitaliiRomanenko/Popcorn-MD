@@ -1,5 +1,5 @@
 import { Movie } from "../models/Movie";
-import { SearchResult, SearchMovie, FindResponce } from "../models/SearchResult";
+import { SearchResult, SearchMovie, FindResponse } from "../models/SearchResult";
 import { PopcornMDSettings } from "../settings/settings";
 import { TMDbAPIService } from "./tmdbAPIService";
 
@@ -34,10 +34,10 @@ export class TMDbMovieService extends TMDbAPIService {
     }
 
     private async getMovieByIMDbId(query: string): Promise<SearchResult>{
-        let data: FindResponce;
+        let data: FindResponse;
         let movies: SearchMovie[];
         try {
-            data = await this.fetchFromTMDb<FindResponce>(`/find/${query}`, {
+            data = await this.fetchFromTMDb<FindResponse>(`/find/${query}`, {
                 external_source: "imdb_id"
             });
             movies = (data.movie_results ?? []).map((raw: SearchMovie) => raw);

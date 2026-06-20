@@ -10,7 +10,7 @@ export interface PopcornMDSettings {
 	APIKey: string;
 	templateFile: string;
 	language: string;
-	defaultFoder: string;
+	defaultFolder: string;
 	adult_content: boolean;
 }
 
@@ -18,7 +18,7 @@ export const DEFAULT_SETTINGS: PopcornMDSettings = {
 	APIKey: '',
 	templateFile: '',
 	language: 'en',
-	defaultFoder: '',
+	defaultFolder: '',
 	adult_content: false
 };
 
