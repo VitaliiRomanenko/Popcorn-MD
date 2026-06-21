@@ -55,29 +55,7 @@ jobs:
             release/manifest.json
             release/styles.css
           body: |
-            ## Release Notes for Popcorn MD v0.2.1
+            ## Release v0.2.2
 
             ### Features
-            - **Keyboard navigation for search results**: Added arrow key navigation (Up/Down) to browse movie cards in the search modal, with visual focus indication and smooth scrolling
-            - **Enter key selection for focused item**: Pressing Enter now selects the currently focused movie card from the search results
-            - **Escape key to close**: Pressing Escape closes the search modal
-
-            ### Improvements
-            - **Improved error handling in TMDb API service**: Added specific error messages for authentication failures (401), rate limiting (429), and general API errors. API key validation is now performed before making requests
-            - **Better template validation**: Added explicit checks for missing template files and non-file paths with clearer error messages
-            - **Renamed "card" CSS class to "movie-item"**: Improved semantic naming for better code clarity and maintainability
-            - **Fixed typo "foded" to "focused"**: Corrected CSS class name spelling in focus-related functionality
-            - **Styling enhancements**: Added hover effects, focus outlines, and improved visual feedback for movie cards with better layout and overflow handling
-
-            ### Bug Fixes
-            - **Multiple typo corrections**:
-              - Fixed `AuthResponce` to `AuthResponse` (file rename and import updates)
-              - Fixed `GenreResponce` to `GenreResponse`
-              - Fixed `FindResponce` to `FindResponse`
-              - Fixed `defaultFoder` to `defaultFolder` across settings interface, defaults, and all references
-              - Fixed `TMDbGanreService` to `TMDbGenreService`
-            - **Fixed comment typo**: Corrected "focused" in SearchView comments
-
-            ### Breaking Changes
-            - **Settings key renamed**: The `defaultFoder` setting key has been renamed to `defaultFolder`. Users will need to re-configure their default folder setting, or existing configurations will not migrate automatically
-
+            - Add project documentation

@@ -1,6 +1,11 @@
 import { Setting } from 'obsidian';
 import PopcornMD from '../../main';
 
+/**
+ * Creates a toggle setting for including adult content in search results.
+ * @param containerEl - The container element where the setting will be added.
+ * @param plugin - The main plugin instance, used to read/write settings.
+ */
 export function  createAdultSetting(containerEl: HTMLElement, plugin: PopcornMD) {
     new Setting(containerEl)
         .setName('Adult titles')
