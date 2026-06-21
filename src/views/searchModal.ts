@@ -28,7 +28,6 @@ export class SearchModal extends Modal {
         const movieList = container.createDiv("movie-list");
         this.view = new SearchView(movieList);
         this.input.focus();
-        // Key handler for navigation (listen on the whole container)
         container.addEventListener("keydown", (event: KeyboardEvent) => {
                 switch (event.key){
                 case "ArrowDown":

@@ -1,10 +1,10 @@
 # Popcorn-MD
 
 ![Obsidian](https://img.shields.io/badge/Obsidian-Plugin-7C3AED?style=flat-square&logo=obsidian)
-![Version](https://img.shields.io/badge/Version-0.2.0-blue?style=flat-square)
+![Version](https://img.shields.io/badge/Version-0.2.1-blue?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-**PopcornMD** is an Obsidian plugin that lets you search for movies and TV shows via [TMDb](https://www.themoviedb.org/) and automatically create beautiful, structured notes from a template — all without leaving Obsidian.
+**Popcorn-MD** is an Obsidian plugin that lets you search for movies and TV shows via [TMDb](https://www.themoviedb.org/) and automatically create beautiful, structured notes from a template — all without leaving Obsidian.
 
 ## Features
 
@@ -19,19 +19,19 @@
 
 1. Open **Settings → Community plugins**.
 2. Disable **Safe mode**.
-3. Click **Browse** and search for **"PopcornMD"**.
+3. Click **Browse** and search for **"Popcorn-MD"**.
 4. Install and enable the plugin.
 
 ### Manual (developer preview)
 
-1. Download the latest release from [Releases](https://github.com/your-username/popcornmd/releases).
-2. Extract `main.js`, `manifest.json`, and `styles.css` into `<vault>/.obsidian/plugins/popcornmd/`.
+1. Download the latest release from [Releases](https://github.com/VitaliiRomanenko/popcorn-md/releases).
+2. Extract `main.js`, `manifest.json`, and `styles.css` into `<vault>/.obsidian/plugins/popcorn-md/`.
 3. Reload Obsidian and enable the plugin in **Settings → Community plugins**.
 
 ## Getting Started
 
 1. **Get a TMDb API key** — Sign up at [themoviedb.org](https://www.themoviedb.org/signup) and request an API key.
-2. **Open Plugin Settings** — Navigate to **Settings → Popcorn MD**.
+2. **Open Plugin Settings** — Navigate to **Settings → Popcorn-MD**.
 3. **Select template** — Select file from list
 4. **Enter your API key** — Paste your TMDb API key and click **Save**.
 5. **Open the movie search** — Use the command palette (`Cmd+P` / `Ctrl+P`) and run **"Popcorn MD: Create new movie note"**, or click the 🍿 ribbon icon.
@@ -51,8 +51,8 @@
 | **TMDb API Key** | Your TMDb API key (required) |
 | **Default language** | Language for movie data |
 | **Template path** | Path to your custom template file (relative to vault root) |
-| **Default folder** *(added in v0.2)* | Where new movie notes are saved |
-| **Include poster** *(added in v0.2)* | Toggle to embed movie poster image in notes |
+| **Default folder** | Where new movie notes are saved |
+| **Include poster** *(added in v0.3)* | Toggle to embed movie poster image in notes |
 
 ## Template System
 
@@ -98,32 +98,32 @@ All variables are placeholders wrapped in double braces `{{variable}}` and are u
 
 | Field | Example Value | Description |
 |-------|---------------|-------------|
-| **[tags](ca://s?q=tags_md_field)** | `Movie` | Category of the file, always `Movie`. |
-| **[adult](ca://s?q=adult_md_field)** | `false` | Whether the movie is adult content (`true/false`). |
-| **[belongs_to_collection](ca://s?q=collection_md_field)** | `The Dark Knight Trilogy` | Collection/series name if applicable. |
-| **[budget](ca://s?q=budget_md_field)** | `185000000` | Production budget in USD. |
-| **[genres](ca://s?q=genres_md_field)** | `Action, Drama` | List of genres. |
-| **[homepage](ca://s?q=homepage_md_field)** | `https://www.dc.com/batman` | Official movie website. |
-| **[TMDbID](ca://s?q=TMDbID_md_field)** | `155` | Unique TMDb identifier. |
-| **[IMDbID](ca://s?q=IMDbID_md_field)** | `tt0468569` | Unique IMDb identifier. |
-| **[origin_country](ca://s?q=origin_country_md_field)** | `US` | Country of origin. |
-| **[original_language](ca://s?q=original_language_md_field)** | `en` | Original language. |
-| **[original_title](ca://s?q=original_title_md_field)** | `The Dark Knight` | Original movie title. |
-| **[overview](ca://s?q=overview_md_field)** | `Batman faces Joker...` | Short synopsis/description. |
-| **[popularity](ca://s?q=popularity_md_field)** | `92.5` | Popularity score from TMDb. |
-| **[poster_path](ca://s?q=poster_path_md_field)** | `/qJ2tW6WMUDux911r6m7haRef0WH.jpg` | Path to poster image. |
-| **[production_companies](ca://s?q=production_companies_md_field)** | `Warner Bros.` | Studios involved in production. |
-| **[production_countries](ca://s?q=production_countries_md_field)** | `United States` | Countries involved in production. |
-| **[release_date](ca://s?q=release_date_md_field)** | `2008-07-18` | Release date. |
-| **[revenue](ca://s?q=revenue_md_field)** | `1004558444` | Box office revenue in USD. |
-| **[runtime](ca://s?q=runtime_md_field)** | `152` | Duration in minutes. |
-| **[softcore](ca://s?q=softcore_md_field)** | `false` | Flag for soft erotic content. |
-| **[spoken_languages](ca://s?q=spoken_languages_md_field)** | `English, Mandarin` | Spoken languages in the movie. |
-| **[status](ca://s?q=status_md_field)** | `Released` | Release status. |
-| **[tagline](ca://s?q=tagline_md_field)** | `Why So Serious?` | Promotional tagline. |
-| **[title](ca://s?q=title_md_field)** | `The Dark Knight` | Localized movie title. |
-| **[vote_average](ca://s?q=vote_average_md_field)** | `8.5` | Average user rating. |
-| **[vote_count](ca://s?q=vote_count_md_field)** | `29000` | Number of votes. |
+| **tags** | `Movie` | Category of the file, always `Movie`. |
+| **adult** | `false` | Whether the movie is adult content (`true/false`). |
+| **belongs_to_collection** | `The Dark Knight Trilogy` | Collection/series name if applicable. |
+| **budget** | `185000000` | Production budget in USD. |
+| **genres** | `Action, Drama` | List of genres. |
+| **homepage** | `https://www.dc.com/batman` | Official movie website. |
+| **TMDbID** | `155` | Unique TMDb identifier. |
+| **IMDbID** | `tt0468569` | Unique IMDb identifier. |
+| **origin_country** | `US` | Country of origin. |
+| **original_language** | `en` | Original language. |
+| **original_title** | `The Dark Knight` | Original movie title. |
+| **overview** | `Batman faces Joker...` | Short synopsis/description. |
+| **popularity** | `92.5` | Popularity score from TMDb. |
+| **poster_path** | `/qJ2tW6WMUDux911r6m7haRef0WH.jpg` | Path to poster image. |
+| **production_companies** | `Warner Bros.` | Studios involved in production. |
+| **production_countries** | `United States` | Countries involved in production. |
+| **release_date)** | `2008-07-18` | Release date. |
+| **revenue** | `1004558444` | Box office revenue in USD. |
+| **runtime** | `152` | Duration in minutes. |
+| **softcore** | `false` | Flag for soft erotic content. |
+| **spoken_languages** | `English, Mandarin` | Spoken languages in the movie. |
+| **status** | `Released` | Release status. |
+| **tagline** | `Why So Serious?` | Promotional tagline. |
+| **title** | `The Dark Knight` | Localized movie title. |
+| **vote_average** | `8.5` | Average user rating. |
+| **vote_count** | `29000` | Number of votes. |
 
 ---
 
@@ -145,7 +145,7 @@ All variables are placeholders wrapped in double braces `{{variable}}` and are u
 
 ```bash
 git clone https://github.com/VitaliiRomanenko/popcorn-md
-cd popcornmd
+cd popcorn-md
 npm install
 ```
 
@@ -176,4 +176,4 @@ This plugin is not affiliated with, endorsed by, or sponsored by TMDb or Obsidia
 
 ---
 
-*PopcornMD — Because your movie collection deserves better than plain text.*
+*Popcorn-MD — Because your movie collection deserves better than plain text.*
