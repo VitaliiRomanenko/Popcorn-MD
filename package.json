@@ -1,6 +1,6 @@
 {
 	"name": "popcorn-md",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "Generate and manage movie-related notes using IMDb identifiers or movie titles.",
 	"main": "main.js",
 	"type": "module",
