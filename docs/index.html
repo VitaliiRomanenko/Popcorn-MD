@@ -1,0 +1,276 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>popcorn-md</title><meta name="description" content="Documentation for popcorn-md"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script><script async src="assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">popcorn-md</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>popcorn-md</h1></div><div class="tsd-panel tsd-typography"><h1 id="popcorn-md" class="tsd-anchor-link">Popcorn-MD<a href="#popcorn-md" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p><img src="https://img.shields.io/badge/Obsidian-Plugin-7C3AED?style=flat-square&amp;logo=obsidian" alt="Obsidian">
+<img src="https://img.shields.io/badge/Version-0.2.1-blue?style=flat-square" alt="Version">
+<img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"></p>
+<p><strong>Popcorn-MD</strong> is an Obsidian plugin that lets you search for movies and TV shows via <a href="https://www.themoviedb.org/">TMDb</a> and automatically create beautiful, structured notes from a template — all without leaving Obsidian.</p>
+<h2 id="features" class="tsd-anchor-link">Features<a href="#features" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ul>
+<li><strong>Search by title or IMDb ID</strong> — Find any movie quickly.</li>
+<li><strong>Auto-generated notes</strong> — Creates an Obsidian note pre-filled with movie metadata (title, year, genres, poster, synopsis, rating, cast, etc.).</li>
+<li><strong>Customizable templates</strong> — Design your own note layout using placeholders.</li>
+<li><strong>Minimal UI</strong> — A clean modal search interface for distraction-free workflow.</li>
+</ul>
+<h2 id="installation" class="tsd-anchor-link">Installation<a href="#installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="from-obsidian-community-plugins-once-released" class="tsd-anchor-link">From Obsidian Community Plugins (once released)<a href="#from-obsidian-community-plugins-once-released" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ol>
+<li>Open <strong>Settings → Community plugins</strong>.</li>
+<li>Disable <strong>Safe mode</strong>.</li>
+<li>Click <strong>Browse</strong> and search for <strong>&quot;Popcorn-MD&quot;</strong>.</li>
+<li>Install and enable the plugin.</li>
+</ol>
+<h3 id="manual-developer-preview" class="tsd-anchor-link">Manual (developer preview)<a href="#manual-developer-preview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ol>
+<li>Download the latest release from <a href="https://github.com/VitaliiRomanenko/popcorn-md/releases">Releases</a>.</li>
+<li>Extract <code>main.js</code>, <code>manifest.json</code>, and <code>styles.css</code> into <code>&lt;vault&gt;/.obsidian/plugins/popcorn-md/</code>.</li>
+<li>Reload Obsidian and enable the plugin in <strong>Settings → Community plugins</strong>.</li>
+</ol>
+<h2 id="getting-started" class="tsd-anchor-link">Getting Started<a href="#getting-started" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ol>
+<li><strong>Get a TMDb API key</strong> — Sign up at <a href="https://www.themoviedb.org/signup">themoviedb.org</a> and request an API key.</li>
+<li><strong>Open Plugin Settings</strong> — Navigate to <strong>Settings → Popcorn-MD</strong>.</li>
+<li><strong>Select template</strong> — Select file from list</li>
+<li><strong>Enter your API key</strong> — Paste your TMDb API key and click <strong>Save</strong>.</li>
+<li><strong>Open the movie search</strong> — Use the command palette (<code>Cmd+P</code> / <code>Ctrl+P</code>) and run <strong>&quot;Popcorn MD: Create new movie note&quot;</strong>, or click the 🍿 ribbon icon.</li>
+<li><strong>Select a movie</strong> — Type a title (or IMDb ID starting with <code>tt...</code>) and choose from the results.</li>
+<li><strong>Note created!</strong> — A new note is generated using your selected template.</li>
+</ol>
+<h2 id="commands" class="tsd-anchor-link">Commands<a href="#commands" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Popcorn MD: Create new movie note</strong></td>
+<td>Opens the movie search modal</td>
+</tr>
+</tbody>
+</table>
+<h2 id="settings" class="tsd-anchor-link">Settings<a href="#settings" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TMDb API Key</strong></td>
+<td>Your TMDb API key (required)</td>
+</tr>
+<tr>
+<td><strong>Default language</strong></td>
+<td>Language for movie data</td>
+</tr>
+<tr>
+<td><strong>Template path</strong></td>
+<td>Path to your custom template file (relative to vault root)</td>
+</tr>
+<tr>
+<td><strong>Default folder</strong></td>
+<td>Where new movie notes are saved</td>
+</tr>
+<tr>
+<td><strong>Include poster</strong> <em>(added in v0.3)</em></td>
+<td>Toggle to embed movie poster image in notes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="template-system" class="tsd-anchor-link">Template System<a href="#template-system" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>This template helps you automatically generate <code>.md</code> files with movie metadata.<br>
+All variables are placeholders wrapped in double braces <code>{{variable}}</code> and are usually filled from APIs (e.g., TMDb/IMDb).</p>
+<blockquote>
+<p><strong>Note on array fields:</strong> The fields <code>genres</code>, <code>origin_country</code>, <code>production_companies</code>, <code>production_countries</code>, and <code>spoken_languages</code> are currently stored as Obsidian links (for example, <code>[[Action]]</code>, <code>[[Drama]]</code>). In future versions, you’ll be able to choose how these values are stored — as links, lists, or comma‑separated strings — through template configuration options.</p>
+</blockquote>
+<h3 id="template-fields" class="tsd-anchor-link">Template Fields<a href="#template-fields" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<blockquote>
+<p>This is a sample template where data is stored as metadata,
+but you can use these fields in any way you like.</p>
+</blockquote>
+<pre><code class="Markdown"><span class="hl-0">	---</span><br/><span class="hl-0">	adult: &quot;{{adult}}&quot;</span><br/><span class="hl-0">	belongs_to_collection: &quot;{{collection}}&quot;</span><br/><span class="hl-0">	budget: &quot;{{budget}}&quot;</span><br/><span class="hl-0">	genres: &quot;{{genres}}&quot;</span><br/><span class="hl-0">	homepage: &quot;{{homepage}}&quot;</span><br/><span class="hl-0">	TMDbID: &quot;{{id}}&quot;</span><br/><span class="hl-0">	IMDbID: &quot;{{imdb_id}}&quot;</span><br/><span class="hl-0">	origin_country: &quot;{{origin_country}}&quot;</span><br/><span class="hl-0">	original_language: &quot;{{original_language}}&quot;</span><br/><span class="hl-0">	original_title: &quot;{{original_title}}&quot;</span><br/><span class="hl-0">	overview: &quot;{{overview}}&quot;</span><br/><span class="hl-0">	popularity: &quot;{{popularity}}&quot;</span><br/><span class="hl-0">	poster_path: &quot;{{poster_path}}&quot;</span><br/><span class="hl-0">	production_companies: &quot;{{production_companies}}&quot;</span><br/><span class="hl-0">	production_countries: &quot;{{production_countries}}&quot;</span><br/><span class="hl-0">	release_date: &quot;{{release_date}}&quot;</span><br/><span class="hl-0">	revenue: &quot;{{revenue}}&quot;</span><br/><span class="hl-0">	runtime: &quot;{{runtime}}&quot;</span><br/><span class="hl-0">	softcore: &quot;{{softcore}}&quot;</span><br/><span class="hl-0">	spoken_languages: &quot;{{spoken_languages}}&quot;</span><br/><span class="hl-0">	status: &quot;{{status}}&quot;</span><br/><span class="hl-0">	tagline: &quot;{{tagline}}&quot;</span><br/><span class="hl-0">	title: &quot;{{title}}&quot;</span><br/><span class="hl-0">	vote_average: &quot;{{vote_average}}&quot;</span><br/><span class="hl-0">	vote_count: &quot;{{vote_count}}&quot;</span><br/><span class="hl-0">	---</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="📊-template-field-reference" class="tsd-anchor-link">📊 Template Field Reference<a href="#📊-template-field-reference" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Example Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>tags</strong></td>
+<td><code>Movie</code></td>
+<td>Category of the file, always <code>Movie</code>.</td>
+</tr>
+<tr>
+<td><strong>adult</strong></td>
+<td><code>false</code></td>
+<td>Whether the movie is adult content (<code>true/false</code>).</td>
+</tr>
+<tr>
+<td><strong>belongs_to_collection</strong></td>
+<td><code>The Dark Knight Trilogy</code></td>
+<td>Collection/series name if applicable.</td>
+</tr>
+<tr>
+<td><strong>budget</strong></td>
+<td><code>185000000</code></td>
+<td>Production budget in USD.</td>
+</tr>
+<tr>
+<td><strong>genres</strong></td>
+<td><code>Action, Drama</code></td>
+<td>List of genres.</td>
+</tr>
+<tr>
+<td><strong>homepage</strong></td>
+<td><code>https://www.dc.com/batman</code></td>
+<td>Official movie website.</td>
+</tr>
+<tr>
+<td><strong>TMDbID</strong></td>
+<td><code>155</code></td>
+<td>Unique TMDb identifier.</td>
+</tr>
+<tr>
+<td><strong>IMDbID</strong></td>
+<td><code>tt0468569</code></td>
+<td>Unique IMDb identifier.</td>
+</tr>
+<tr>
+<td><strong>origin_country</strong></td>
+<td><code>US</code></td>
+<td>Country of origin.</td>
+</tr>
+<tr>
+<td><strong>original_language</strong></td>
+<td><code>en</code></td>
+<td>Original language.</td>
+</tr>
+<tr>
+<td><strong>original_title</strong></td>
+<td><code>The Dark Knight</code></td>
+<td>Original movie title.</td>
+</tr>
+<tr>
+<td><strong>overview</strong></td>
+<td><code>Batman faces Joker...</code></td>
+<td>Short synopsis/description.</td>
+</tr>
+<tr>
+<td><strong>popularity</strong></td>
+<td><code>92.5</code></td>
+<td>Popularity score from TMDb.</td>
+</tr>
+<tr>
+<td><strong>poster_path</strong></td>
+<td><code>/qJ2tW6WMUDux911r6m7haRef0WH.jpg</code></td>
+<td>Path to poster image.</td>
+</tr>
+<tr>
+<td><strong>production_companies</strong></td>
+<td><code>Warner Bros.</code></td>
+<td>Studios involved in production.</td>
+</tr>
+<tr>
+<td><strong>production_countries</strong></td>
+<td><code>United States</code></td>
+<td>Countries involved in production.</td>
+</tr>
+<tr>
+<td><strong>release_date)</strong></td>
+<td><code>2008-07-18</code></td>
+<td>Release date.</td>
+</tr>
+<tr>
+<td><strong>revenue</strong></td>
+<td><code>1004558444</code></td>
+<td>Box office revenue in USD.</td>
+</tr>
+<tr>
+<td><strong>runtime</strong></td>
+<td><code>152</code></td>
+<td>Duration in minutes.</td>
+</tr>
+<tr>
+<td><strong>softcore</strong></td>
+<td><code>false</code></td>
+<td>Flag for soft erotic content.</td>
+</tr>
+<tr>
+<td><strong>spoken_languages</strong></td>
+<td><code>English, Mandarin</code></td>
+<td>Spoken languages in the movie.</td>
+</tr>
+<tr>
+<td><strong>status</strong></td>
+<td><code>Released</code></td>
+<td>Release status.</td>
+</tr>
+<tr>
+<td><strong>tagline</strong></td>
+<td><code>Why So Serious?</code></td>
+<td>Promotional tagline.</td>
+</tr>
+<tr>
+<td><strong>title</strong></td>
+<td><code>The Dark Knight</code></td>
+<td>Localized movie title.</td>
+</tr>
+<tr>
+<td><strong>vote_average</strong></td>
+<td><code>8.5</code></td>
+<td>Average user rating.</td>
+</tr>
+<tr>
+<td><strong>vote_count</strong></td>
+<td><code>29000</code></td>
+<td>Number of votes.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="how-to-create-your-own-template" class="tsd-anchor-link">How to Create Your Own Template<a href="#how-to-create-your-own-template" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ol>
+<li>Create a file named <code>Template.md</code>.</li>
+<li>Add the required fields using the format <code>{{variable}}</code>.</li>
+<li>Use an API (TMDb/IMDb) to populate values dynamically.</li>
+<li>Save the file in your notes system (e.g., Obsidian).</li>
+</ol>
+<h2 id="development" class="tsd-anchor-link">Development<a href="#development" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="prerequisites" class="tsd-anchor-link">Prerequisites<a href="#prerequisites" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li>Node.js 18+</li>
+<li>npm</li>
+</ul>
+<h3 id="setup" class="tsd-anchor-link">Setup<a href="#setup" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<pre><code class="bash">git clone https://github.com/VitaliiRomanenko/popcorn-md
+cd popcorn-md
+npm install
+</code><button type="button">Copy</button></pre>
+
+<h3 id="build-watch" class="tsd-anchor-link">Build &amp; Watch<a href="#build-watch" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<pre><code class="bash">npm run dev    # Development with watch mode
+npm run build  # Production build
+</code><button type="button">Copy</button></pre>
+
+<h3 id="lint" class="tsd-anchor-link">Lint<a href="#lint" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<pre><code class="bash">npm run lint
+</code><button type="button">Copy</button></pre>
+
+<h2 id="license" class="tsd-anchor-link">License<a href="#license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>MIT</p>
+<h2 id="contact" class="tsd-anchor-link">Contact<a href="#contact" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>For questions, feedback, or contributions, reach out to <strong>Vitalii Romanenko</strong> at <a href="mailto:vitalii.o.romanenko@gmail.com">vitalii.o.romanenko@gmail.com</a>.</p>
+<h2 id="disclaimer" class="tsd-anchor-link">Disclaimer<a href="#disclaimer" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>This plugin is not affiliated with, endorsed by, or sponsored by TMDb or Obsidian. Movie data is provided by <a href="https://www.themoviedb.org/">The Movie Database (TMDb)</a>. You must obtain your own API key from TMDb to use this plugin.</p>
+<hr>
+<p><em>Popcorn-MD — Because your movie collection deserves better than plain text.</em></p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#popcorn-md"><span>Popcorn-<wbr/>MD</span></a><ul><li><a href="#features"><span>Features</span></a></li><li><a href="#installation"><span>Installation</span></a></li><li><ul><li><a href="#from-obsidian-community-plugins-once-released"><span>From <wbr/>Obsidian <wbr/>Community <wbr/>Plugins (once released)</span></a></li><li><a href="#manual-developer-preview"><span>Manual (developer preview)</span></a></li></ul></li><li><a href="#getting-started"><span>Getting <wbr/>Started</span></a></li><li><a href="#commands"><span>Commands</span></a></li><li><a href="#settings"><span>Settings</span></a></li><li><a href="#template-system"><span>Template <wbr/>System</span></a></li><li><ul><li><a href="#template-fields"><span>Template <wbr/>Fields</span></a></li><li><a href="#📊-template-field-reference"><span>📊 <wbr/>Template <wbr/>Field <wbr/>Reference</span></a></li><li><a href="#how-to-create-your-own-template"><span>How to <wbr/>Create <wbr/>Your <wbr/>Own <wbr/>Template</span></a></li></ul></li><li><a href="#development"><span>Development</span></a></li><li><ul><li><a href="#prerequisites"><span>Prerequisites</span></a></li><li><a href="#setup"><span>Setup</span></a></li><li><a href="#build-watch"><span>Build &amp; <wbr/>Watch</span></a></li><li><a href="#lint"><span>Lint</span></a></li></ul></li><li><a href="#license"><span>License</span></a></li><li><a href="#contact"><span>Contact</span></a></li><li><a href="#disclaimer"><span>Disclaimer</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">popcorn-md</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
