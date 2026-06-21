@@ -4,16 +4,31 @@ import PopcornMD from "../main";
 import { SearchController } from "../controllers/SearchController";
 import { SearchView } from "./SearchView";
 
+/**
+ * Modal that allows the user to search for movies and create notes from the results.
+ */
 export class SearchModal extends Modal {
+    /** Handles search logic and movie data retrieval. */
     private controller: SearchController;
+    /** Renders and manages the movie results list. */
     private view!: SearchView;
+    /** The search input field element. */
     private input!: HTMLInputElement;
 
+    /**
+     * @param app     - The Obsidian App instance.
+     * @param settings - Plugin settings (API key, language, etc.).
+     * @param plugin   - The main plugin instance.
+     */
     constructor(app: App, settings: PopcornMDSettings, plugin: PopcornMD) {
         super(app);
         this.controller = new SearchController(app, settings, plugin);
     }
 
+    /**
+     * Called when the modal opens. Initialises the controller, builds the UI,
+     * and attaches keyboard event listeners.
+     */
     async onOpen(): Promise<void> {
         await this.controller.init();
 
@@ -26,13 +41,17 @@ export class SearchModal extends Modal {
             placeholder: "Enter movie name or IMDb id"
         });
         const movieList = container.createDiv("movie-list");
+
+        // Initialise the SearchView to render and manage the movie results list within the provided container element
         this.view = new SearchView(movieList);
-        this.input.focus();
+
+        this.input.focus(); // set search input focused
+
         container.addEventListener("keydown", (event: KeyboardEvent) => {
                 switch (event.key){
                 case "ArrowDown":
-                        event.preventDefault();
-                    this.view.focusNext();  // Fix typo here
+                    event.preventDefault();
+                    this.view.focusNext();
                     break;
                 case "ArrowUp":
                         event.preventDefault();
@@ -49,7 +68,6 @@ export class SearchModal extends Modal {
                 }
         });
 
-        // Separate handler for the search input
         this.input.addEventListener("keydown", (event: KeyboardEvent) => {
             if (event.key === "Enter") {
                 event.preventDefault();
@@ -64,10 +82,16 @@ export class SearchModal extends Modal {
         });
     }
 
+    /** Clears the modal content when it is closed. */
     onClose(): void {
         this.contentEl.empty();
     }
 
+    /**
+     * Handles a search request triggered by pressing Enter in the input field.
+     *
+     * @param event - The keyboard event that triggered the search.
+     */
     private async handleSearch(event: KeyboardEvent) {
         event.preventDefault();
         const query = (event.target as HTMLInputElement).value.trim();
@@ -90,6 +114,10 @@ export class SearchModal extends Modal {
         }
     }
     
+    /**
+     * Handles the Enter key press when a movie card is focused.
+     * Retrieves the currently focused movie ID and triggers note creation.
+     */
     private handleKeyboardSelection(): void{
         const movieId = this.view.getFocusedMovieId();
         if (movieId !== null) {
@@ -97,6 +125,11 @@ export class SearchModal extends Modal {
         }
     }
 
+    /**
+     * Creates a note for the selected movie and opens it in the editor.
+     *
+     * @param movieId - The TMDb ID of the movie to create a note for.
+     */
     private async handleMovieSelection(movieId: number) {
         let note: TFile | null = null;
         try {

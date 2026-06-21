@@ -3,6 +3,11 @@ import { LanguageSuggest } from "../suggester/LanguageSuggest";
 import { LANGUAGES } from "../language/languages";
 import PopcornMD from "../../main";
 
+/**
+ * Creates a search setting for selecting the language used for TMDb API responses.
+ * @param containerEl - The container element where the setting will be added.
+ * @param plugin - The main plugin instance, used to read/write settings.
+ */
 export function createLanguageSetting(containerEl: HTMLElement, plugin: PopcornMD) {
     const desc = activeDocument.createDocumentFragment();
     desc.createEl('span', {
@@ -34,6 +39,12 @@ export function createLanguageSetting(containerEl: HTMLElement, plugin: PopcornM
         })
 }
 
+/**
+ * Returns the display name (native or English) for a given ISO 639‑1 language code.
+ * Falls back to 'English' if the code is not found.
+ * @param iso - The ISO 639‑1 language code.
+ * @returns The display name of the language.
+ */
 function getLanguageDisplayName(iso: string): string {
     const found = LANGUAGES.find(l => l.iso_639_1 === iso);
     return found ? (found.name || found.english_name) : 'English'

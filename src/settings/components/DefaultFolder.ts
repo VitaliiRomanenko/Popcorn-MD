@@ -2,6 +2,11 @@ import PopcornMD from "../../main";
 import { FolderSuggest } from "../suggester/FolderSuggest"
 import { Setting } from "obsidian";
 
+/**
+ * Creates a search setting for selecting the default folder where movie notes will be stored.
+ * @param containerEl - The container element where the setting will be added.
+ * @param plugin - The main plugin instance, used to read/write settings.
+ */
 export function createDefaultFolderSetting(containerEl: HTMLElement, plugin: PopcornMD) {
         new Setting(containerEl)
         .setName('Default folder')

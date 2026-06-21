@@ -1,6 +1,11 @@
 import { Setting } from 'obsidian';
 import PopcornMD from '../../main';
 
+/**
+ * Creates a text input setting for the TMDb API key.
+ * @param containerEl - The container element where the setting will be added.
+ * @param plugin - The main plugin instance, used to read/write settings.
+ */
 export function  createAPIKeySetting(containerEl: HTMLElement, plugin: PopcornMD) {
     const APIKeyDesc = activeDocument.createDocumentFragment();
 

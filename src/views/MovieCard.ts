@@ -1,6 +1,13 @@
 import { setIcon } from "obsidian";
 import { SearchMovie } from "../models/SearchResult";
 
+/**
+ * Creates a DOM element representing a movie card for the search results.
+ *
+ * @param movie    - The movie data to display.
+ * @param genresMap - A mapping of genre IDs to their display names.
+ * @returns The constructed HTMLElement (a div with class "movie-item").
+ */
 export function createMovieCard(movie: SearchMovie, genresMap: Record<number, string>): HTMLElement {
   const card = activeDocument.createElement("div");
   card.className = "movie-item";
@@ -78,6 +85,12 @@ export function createMovieCard(movie: SearchMovie, genresMap: Record<number, st
   card.appendChild(photoDiv);
   card.appendChild(infoDiv);
 
+  /**
+   * Renders a star rating display based on a numeric rating (0‑10).
+   *
+   * @param rating - The rating value (e.g., 7.5).
+   * @returns A div containing the star elements.
+   */
   function renderStars(rating: number): HTMLDivElement {
     const container = activeDocument.createElement("div");
     container.classList.add("rating");
