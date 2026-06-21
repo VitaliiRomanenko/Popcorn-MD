@@ -1,9 +1,9 @@
-import { Genre, GenreResponce} from "../models/Genre";
+import { Genre, GenreResponse} from "../models/Genre";
 import { PopcornMDSettings } from "../settings/settings";
 import { TMDbAPIService } from "./tmdbAPIService";
 
 
-export class TMDbGanreService extends TMDbAPIService {
+export class TMDbGenreService extends TMDbAPIService {
     private genreMap = new Map<number, string>();
 
     constructor(settings: PopcornMDSettings) {
@@ -11,7 +11,7 @@ export class TMDbGanreService extends TMDbAPIService {
     }
 
     public async init(): Promise<void>{
-        const data = await this.fetchFromTMDb<GenreResponce>(`/genre/movie/list`);
+        const data = await this.fetchFromTMDb<GenreResponse>(`/genre/movie/list`);
         data.genres.forEach((g: Genre) => {
             this.genreMap.set(g.id, g.name);
         });

@@ -3,7 +3,7 @@ import { SearchMovie } from "../models/SearchResult";
 
 export function createMovieCard(movie: SearchMovie, genresMap: Record<number, string>): HTMLElement {
   const card = activeDocument.createElement("div");
-  card.className = "card";
+  card.className = "movie-item";
   card.id = movie.id.toString();
 
   //#region Photo

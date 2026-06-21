@@ -7,6 +7,7 @@ import { SearchView } from "./SearchView";
 export class SearchModal extends Modal {
     private controller: SearchController;
     private view!: SearchView;
+    private input!: HTMLInputElement;
 
     constructor(app: App, settings: PopcornMDSettings, plugin: PopcornMD) {
         super(app);
@@ -20,17 +21,46 @@ export class SearchModal extends Modal {
         const container = contentEl.createDiv('searchModal-container');
 
         container.createEl('h1', { text: "Popcorn-MD" });
-        const input = container.createEl("input", {
+        this.input = container.createEl("input", {
             type: "search",
             placeholder: "Enter movie name or IMDb id"
         });
         const movieList = container.createDiv("movie-list");
         this.view = new SearchView(movieList);
+        this.input.focus();
+        container.addEventListener("keydown", (event: KeyboardEvent) => {
+                switch (event.key){
+                case "ArrowDown":
+                        event.preventDefault();
+                    this.view.focusNext();  // Fix typo here
+                    break;
+                case "ArrowUp":
+                        event.preventDefault();
+                    this.view.focusPrevious();
+                        break;
 
-        input.addEventListener("keydown", (event: KeyboardEvent) => {
+                case "Escape":
+                    this.close();
+                        break;
+
+                case "Enter":
+                    this.handleKeyboardSelection()
+                    break;
+                }
+        });
+
+        // Separate handler for the search input
+        this.input.addEventListener("keydown", (event: KeyboardEvent) => {
             if (event.key === "Enter") {
+                event.preventDefault();
                 void this.handleSearch(event);
-            };
+        }
+            // Let arrow keys propagate to container
+            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+                event.stopPropagation();  // Don't let container handle it here
+                // Trigger the container's event listener manually
+                container.dispatchEvent(new KeyboardEvent('keydown', { key: event.key }));
+            }
         });
     }
 
@@ -53,11 +83,20 @@ export class SearchModal extends Modal {
             this.view.showResults(result, genresMap, (movieId: number) => {
                 void this.handleMovieSelection(movieId);
             });
+            this.view.focusNext();
         } catch (error) {
             console.error("Search error:", error);
             this.view.showError();
         }
     }
+    
+    private handleKeyboardSelection(): void{
+        const movieId = this.view.getFocusedMovieId();
+        if (movieId !== null) {
+            void this.handleMovieSelection(movieId);
+        }
+    }
+
     private async handleMovieSelection(movieId: number) {
         let note: TFile | null = null;
         try {
@@ -72,5 +111,5 @@ export class SearchModal extends Modal {
         }
         this.close();
     }
-};
+}
 

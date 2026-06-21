@@ -11,9 +11,12 @@ export class MovieNoteService {
 
     async createMovieNote(movie: Movie, templatePath: string): Promise<TFile> {
         const templateFile = this.getAbstractFileByPath(templatePath);
+        if (!templateFile) {
+            throw new Error("Template file not found");
+        }
         if (!(templateFile instanceof TFile)) {
-            throw Error("Template file not found");
-        };
+            throw new Error("Template path is not a file");
+        }
         const fileName = `${movie.title.replace(/[\\/:*?"<>|]/g, "_")}`;
 
         if(this.getAbstractFileByPath(`${this.defaultFolderPath}/${fileName}.md`)){

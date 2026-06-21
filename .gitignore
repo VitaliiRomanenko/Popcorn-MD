@@ -11,6 +11,7 @@ node_modules
 # Don't include the compiled main.js file in the repo.
 # They should be uploaded to GitHub releases instead.
 release
+main.js
 
 # Exclude sourcemaps
 *.map
@@ -24,7 +25,7 @@ data.json
 # Exclude VSCode workspace settings
 Popcorn-MD.code-workspace
 
-# Exclude hotreload filesі
+# Exclude hotreload files
 .hotreload
 
 # Environment variables
@@ -33,3 +34,9 @@ Popcorn-MD.code-workspace
 # Continue skills
 .continue
 skills-lock.json
+
+# Exclude diff files
+changes.diff
+
+# Exclude aider files
+.aider*

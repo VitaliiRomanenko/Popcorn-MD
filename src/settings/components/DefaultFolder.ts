@@ -9,9 +9,9 @@ export function createDefaultFolderSetting(containerEl: HTMLElement, plugin: Pop
         .addSearch(cb => {
             new FolderSuggest(plugin.app, cb.inputEl);
             cb.setPlaceholder('Example: Movies/')
-            .setValue(plugin.settings.defaultFoder)
+            .setValue(plugin.settings.defaultFolder)
             .onChange(async newDefaultFolder => {
-                plugin.settings.defaultFoder = newDefaultFolder;
+                plugin.settings.defaultFolder = newDefaultFolder;
                 await plugin.saveSettings();
             });
             cb.inputEl.addClass("popcorn-md-input");
