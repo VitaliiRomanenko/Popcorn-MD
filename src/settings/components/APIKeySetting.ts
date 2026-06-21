@@ -27,6 +27,7 @@ export function  createAPIKeySetting(containerEl: HTMLElement, plugin: PopcornMD
                     plugin.settings.APIKey = value;
                     await plugin.saveSettings();
                 });
+            text.inputEl.type = "password";
             text.inputEl.addClass("popcorn-md-input");
         });
 };
