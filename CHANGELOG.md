@@ -1,59 +1,13 @@
-## Release v0.2.1
+## Release v0.1.0
 
-**Version:** 0.2.1
-**Date:** 2026-06-21
+**Version:** 0.1.0  
+**Date:** 2026-06-12
 **Author:** Vitalii Romanenko
 
-### Features
-- **Keyboard navigation for search results**: Added arrow key navigation (Up/Down) to browse movie cards in the search modal, with visual focus indication and smooth scrolling
-- **Enter key selection for focused item**: Pressing Enter now selects the currently focused movie card from the search results
-- **Escape key to close**: Pressing Escape closes the search modal
-
-### Improvements
-- **Improved error handling in TMDb API service**: Added specific error messages for authentication failures (401), rate limiting (429), and general API errors. API key validation is now performed before making requests
-- **Better template validation**: Added explicit checks for missing template files and non-file paths with clearer error messages
-- **Renamed "card" CSS class to "movie-item"**: Improved semantic naming for better code clarity and maintainability
-- **Fixed typo "foded" to "focused"**: Corrected CSS class name spelling in focus-related functionality
-- **Styling enhancements**: Added hover effects, focus outlines, and improved visual feedback for movie cards with better layout and overflow handling
-
-### Bug Fixes
-- **Multiple typo corrections**:
-  - Fixed `AuthResponce` to `AuthResponse` (file rename and import updates)
-  - Fixed `GenreResponce` to `GenreResponse`
-  - Fixed `FindResponce` to `FindResponse`
-  - Fixed `defaultFoder` to `defaultFolder` across settings interface, defaults, and all references
-  - Fixed `TMDbGanreService` to `TMDbGenreService`
-- **Fixed comment typo**: Corrected "focused" in SearchView comments
-
-### Breaking Changes
-- **Settings key renamed**: The `defaultFoder` setting key has been renamed to `defaultFolder`. Users will need to re-configure their default folder setting, or existing configurations will not migrate automatically
-
-**Full Changelog**: https://github.com/VitaliiRomanenko/popcorn-md/compare/0.2.0...0.2.1
-
-## Release v0.2.0
-
-**Version:** 0.2.0
-**Date:** 2026-06-14
-**Author:** Vitalii Romanenko
-
-### 🚀 New Features
-
-- **Default folder setting**: Added a setting to specify where movie notes are saved. Notes are now created in the configured folder instead of the vault root.
-- **Adult content filtering**: Added an "Adult titles" toggle in settings to include or exclude adult content in search results.
-- **Adult content indicator**: Search results now show a flame icon on movie cards that are marked as adult content.
-- **CI/CD pipeline**: Added a GitHub Actions workflow for automated releases. When a tag is pushed, it builds the plugin, creates a release, and attaches the artifacts (`main.js`, `manifest.json`, `styles.css`).
-
-### 🔧 Improvements
-
-- **Refactored settings tab**: Extracted individual setting components into separate files (`APIKeySetting.ts`, `AdultSetting.ts`, `DefaultFolder.ts`, `LangugeSetting.ts`, `TemplateFileSetting.ts`) for better code organization.
-- **Moved compiled output**: The build process now outputs files to a `release/` directory to keep the repository clean.
-- **Updated build script**: The production build now copies `manifest.json` and `styles.css` to the `release/` directory.
-- **Type improvements**: Replaced the separate `PluginsSettings` interface with the shared `PopcornMDSettings` interface across API service classes.
-- **UI polish**: Added relative positioning on movie cards and constrained overview text width for better layout.
-
-### 🐛 Bug Fixes
-
-- Fixed a typo in the event handler (removed unnecessary semicolons after if statements).
+- **Search by title or IMDb ID** — Quickly find any movie or show. 
+- **Auto-generated notes** — Create Obsidian notes pre-filled with metadata (title, year, genres, poster, synopsis, rating, cast, etc.).
+- **Customizable templates** — Design your own note layout using placeholders.
+- **Minimal UI** — Clean modal search interface for distraction-free workflow.
 
 ## Release v0.1.1
 
@@ -195,15 +149,68 @@ This release fixes multiple security, typing, and Obsidian compatibility issues.
 **Summary**  
 This release addresses critical security and compatibility issues, improves TypeScript safety, and aligns the codebase with Obsidian best practices to make the plugin safer and more robust.
 
+## Release v0.2.0
 
-
-## Release v0.1.0
-
-**Version:** 0.1.0  
-**Date:** 2026-06-12
+**Version:** 0.2.0
+**Date:** 2026-06-14
 **Author:** Vitalii Romanenko
 
-- **Search by title or IMDb ID** — Quickly find any movie or show. 
-- **Auto-generated notes** — Create Obsidian notes pre-filled with metadata (title, year, genres, poster, synopsis, rating, cast, etc.).
-- **Customizable templates** — Design your own note layout using placeholders.
-- **Minimal UI** — Clean modal search interface for distraction-free workflow.
+### 🚀 New Features
+
+- **Default folder setting**: Added a setting to specify where movie notes are saved. Notes are now created in the configured folder instead of the vault root.
+- **Adult content filtering**: Added an "Adult titles" toggle in settings to include or exclude adult content in search results.
+- **Adult content indicator**: Search results now show a flame icon on movie cards that are marked as adult content.
+- **CI/CD pipeline**: Added a GitHub Actions workflow for automated releases. When a tag is pushed, it builds the plugin, creates a release, and attaches the artifacts (`main.js`, `manifest.json`, `styles.css`).
+
+### 🔧 Improvements
+
+- **Refactored settings tab**: Extracted individual setting components into separate files (`APIKeySetting.ts`, `AdultSetting.ts`, `DefaultFolder.ts`, `LangugeSetting.ts`, `TemplateFileSetting.ts`) for better code organization.
+- **Moved compiled output**: The build process now outputs files to a `release/` directory to keep the repository clean.
+- **Updated build script**: The production build now copies `manifest.json` and `styles.css` to the `release/` directory.
+- **Type improvements**: Replaced the separate `PluginsSettings` interface with the shared `PopcornMDSettings` interface across API service classes.
+- **UI polish**: Added relative positioning on movie cards and constrained overview text width for better layout.
+
+### 🐛 Bug Fixes
+
+- Fixed a typo in the event handler (removed unnecessary semicolons after if statements).
+
+## Release v0.2.1
+
+**Version:** 0.2.1
+**Date:** 2026-06-21
+**Author:** Vitalii Romanenko
+
+### Features
+- **Keyboard navigation for search results**: Added arrow key navigation (Up/Down) to browse movie cards in the search modal, with visual focus indication and smooth scrolling
+- **Enter key selection for focused item**: Pressing Enter now selects the currently focused movie card from the search results
+- **Escape key to close**: Pressing Escape closes the search modal
+
+### Improvements
+- **Improved error handling in TMDb API service**: Added specific error messages for authentication failures (401), rate limiting (429), and general API errors. API key validation is now performed before making requests
+- **Better template validation**: Added explicit checks for missing template files and non-file paths with clearer error messages
+- **Renamed "card" CSS class to "movie-item"**: Improved semantic naming for better code clarity and maintainability
+- **Fixed typo "foded" to "focused"**: Corrected CSS class name spelling in focus-related functionality
+- **Styling enhancements**: Added hover effects, focus outlines, and improved visual feedback for movie cards with better layout and overflow handling
+
+### Bug Fixes
+- **Multiple typo corrections**:
+  - Fixed `AuthResponce` to `AuthResponse` (file rename and import updates)
+  - Fixed `GenreResponce` to `GenreResponse`
+  - Fixed `FindResponce` to `FindResponse`
+  - Fixed `defaultFoder` to `defaultFolder` across settings interface, defaults, and all references
+  - Fixed `TMDbGanreService` to `TMDbGenreService`
+- **Fixed comment typo**: Corrected "focused" in SearchView comments
+
+### Breaking Changes
+- **Settings key renamed**: The `defaultFoder` setting key has been renamed to `defaultFolder`. Users will need to re-configure their default folder setting, or existing configurations will not migrate automatically
+
+**Full Changelog**: https://github.com/VitaliiRomanenko/popcorn-md/compare/0.2.0...0.2.1
+
+## Release v0.2.2
+
+**Version:** 0.2.2
+**Date:** 2026-06-21
+**Author:** Vitalii Romanenko
+
+### Features
+- Add project documentation
