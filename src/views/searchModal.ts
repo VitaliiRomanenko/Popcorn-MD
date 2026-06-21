@@ -27,7 +27,7 @@ export class SearchModal extends Modal {
         });
         const movieList = container.createDiv("movie-list");
         this.view = new SearchView(movieList);
-
+        this.input.focus();
         // Key handler for navigation (listen on the whole container)
         container.addEventListener("keydown", (event: KeyboardEvent) => {
                 switch (event.key){
@@ -55,7 +55,6 @@ export class SearchModal extends Modal {
             if (event.key === "Enter") {
                 event.preventDefault();
                 void this.handleSearch(event);
-                // this.input.blur();
         }
             // Let arrow keys propagate to container
             if (event.key === "ArrowDown" || event.key === "ArrowUp") {
@@ -85,6 +84,7 @@ export class SearchModal extends Modal {
             this.view.showResults(result, genresMap, (movieId: number) => {
                 void this.handleMovieSelection(movieId);
             });
+            this.view.focusNext();
         } catch (error) {
             console.error("Search error:", error);
             this.view.showError();
