@@ -1,7 +1,7 @@
 {
 	"id": "popcorn-md",
 	"name": "Popcorn MD",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"minAppVersion": "1.5.0",
   	"description": "Generate and manage movie-related notes using IMDb identifiers or movie titles.",
 	"author": "4arlz",

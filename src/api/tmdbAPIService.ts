@@ -1,4 +1,4 @@
-import { requestUrl } from "obsidian";
+import { requestUrl, RequestUrlParam } from "obsidian";
 import { AuthResponse } from "../models/AuthResponse";
 import { PopcornMDSettings } from "../settings/settings";
 
@@ -40,14 +40,28 @@ export class TMDbAPIService {
             const url = new URL(`${this.BASE_URL}${endpoint}`);
             if (!this.apiKey) throw new Error("API key is not set");
 
-            url.searchParams.append("api_key", this.apiKey);
             url.searchParams.append("language", this.language);
 
             for (const [key, value] of Object.entries(params)) {
                 url.searchParams.append(key, value);
             }
 
-            const response = await requestUrl(url.toString());
+            const requestOptions: RequestUrlParam = {
+                url: url.toString(),
+                method: "GET",
+                headers: {}
+            };
+            const apiType = this.checkInput(this.apiKey)
+
+            if(apiType === "key") {
+                url.searchParams.append("api_key", this.apiKey);
+            } else if (apiType === "token") {
+                (requestOptions.headers as Record<string, string>)["Authorization"] = `Bearer ${this.apiKey}`;
+                (requestOptions.headers as Record<string, string>)["Content-Type"] = "application/json";
+            }   
+
+            const response = await requestUrl(requestOptions);
+
             if (response.status === 401) {
                 throw new Error(`TMDb API authentication error: Invalid API key. Please check your API key in settings.`);
             }
@@ -83,4 +97,18 @@ export class TMDbAPIService {
         const resp = await this.fetchFromTMDb<AuthResponse>('/authentication');
         return resp.success;
     }
+
+    private checkInput(key: string): string {
+        const jwtParts = key.split(".");
+        if (jwtParts.length === 3) {
+            return "token";
+        }
+
+        const hexRegex = /^[a-f0-9]{32}$/i;
+        if (hexRegex.test(key)) {
+            return "key";
+        }
+
+        return "unknown";
+        }
 }

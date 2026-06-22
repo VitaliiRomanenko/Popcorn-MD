@@ -2,22 +2,20 @@ import { Setting } from 'obsidian';
 import PopcornMD from '../../main';
 
 /**
- * Creates a text input setting for the TMDb API key.
+ * Creates a text input setting for the TMDb API key or API access token.
  * @param containerEl - The container element where the setting will be added.
  * @param plugin - The main plugin instance, used to read/write settings.
  */
 export function  createAPIKeySetting(containerEl: HTMLElement, plugin: PopcornMD) {
     const APIKeyDesc = activeDocument.createDocumentFragment();
 
-    APIKeyDesc.createEl('span');
-    APIKeyDesc.appendText("Your TMDb API Key. ");
     APIKeyDesc.createEl('a', {
     text: "You can get one here",
         href: 'https://www.themoviedb.org/settings/api'
     });
 
     new Setting(containerEl)
-        .setName('TMDb API Key')
+        .setName('TMDb API Key or API access token')
         .setDesc(APIKeyDesc)
         .addText((text) => {
             text
@@ -27,6 +25,7 @@ export function  createAPIKeySetting(containerEl: HTMLElement, plugin: PopcornMD
                     plugin.settings.APIKey = value;
                     await plugin.saveSettings();
                 });
+            text.inputEl.type = "password";
             text.inputEl.addClass("popcorn-md-input");
         });
 };
