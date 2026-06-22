@@ -214,3 +214,12 @@ This release addresses critical security and compatibility issues, improves Type
 
 ### Features
 - Add project documentation
+
+## Release v0.2.3
+
+**Version:** 0.2.3
+**Date:** 2026-06-22
+**Author:** Vitalii Romanenko
+
+### Features
+- Add TMDb API v4 Access Token supporting

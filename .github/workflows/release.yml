@@ -55,7 +55,7 @@ jobs:
             release/manifest.json
             release/styles.css
           body: |
-            ## Release v0.2.2
+            ## Release v0.2.3
 
             ### Features
-            - Add project documentation
+            - Add MDb API v4 Access Token supporting

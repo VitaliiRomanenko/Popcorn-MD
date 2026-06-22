@@ -1,7 +1,7 @@
 # Popcorn-MD
 
 ![Obsidian](https://img.shields.io/badge/Obsidian-Plugin-7C3AED?style=flat-square&logo=obsidian)
-![Version](https://img.shields.io/badge/Version-0.2.2-blue?style=flat-square)
+![Version](https://img.shields.io/badge/Version-0.2.3-blue?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 **Popcorn-MD** is an Obsidian plugin that lets you search for movies and TV shows via [TMDb](https://www.themoviedb.org/) and automatically create beautiful, structured notes from a template — all without leaving Obsidian.
@@ -30,13 +30,14 @@
 
 ## Getting Started
 
-1. **Get a TMDb API key** — Sign up at [themoviedb.org](https://www.themoviedb.org/signup) and request an API key.
+1. **Get a TMDb API key or TMDb Access Token** — Sign up at [themoviedb.org](https://www.themoviedb.org/signup) and request an API key.
 2. **Open Plugin Settings** — Navigate to **Settings → Popcorn-MD**.
 3. **Select template** — Select file from list
-4. **Enter your API key** — Paste your TMDb API key and click **Save**.
-5. **Open the movie search** — Use the command palette (`Cmd+P` / `Ctrl+P`) and run **"Popcorn MD: Create new movie note"**, or click the 🍿 ribbon icon.
-6. **Select a movie** — Type a title (or IMDb ID starting with `tt...`) and choose from the results.
-7. **Note created!** — A new note is generated using your selected template.
+4. **Enter your API key or TMDb Access Token** — Paste your TMDb API key or TMDb Access Token and click **Save**.
+5. **Select default folder** - Select folder where you want to store your movie notes.
+6. **Open the movie search** — Use the command palette (`Cmd+P` / `Ctrl+P`) and run **"Popcorn MD: Create new movie note"**, or click the 🍿 ribbon icon.
+7. **Select a movie** — Type a title (or IMDb ID starting with `tt...`) and choose from the results.
+8. **Note created!** — A new note is generated using your selected template.
 
 ## Commands
 
@@ -48,10 +49,11 @@
 
 | Setting | Description |
 |---|---|
-| **TMDb API Key** | Your TMDb API key (required) |
+| **TMDb API Key or TMDb Access Token** | Your TMDb API key or TMDb Access Token (required) |
 | **Default language** | Language for movie data |
 | **Template path** | Path to your custom template file (relative to vault root) |
 | **Default folder** | Where new movie notes are saved |
+| **Adult titles** | Selector to include adult titles in search results |
 | **Include poster** *(added in v0.3)* | Toggle to embed movie poster image in notes |
 
 ## Template System
@@ -129,7 +131,7 @@ All variables are placeholders wrapped in double braces `{{variable}}` and are u
 
 ### How to Create Your Own Template
 
-1. Create a file named `Template.md`.
+1. Create a file named `Template.md`, *but you can name it anything you like*.
 2. Add the required fields using the format `{{variable}}`.
 3. Use an API (TMDb/IMDb) to populate values dynamically.
 4. Save the file in your notes system (e.g., Obsidian).
